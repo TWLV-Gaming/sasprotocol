@@ -1,4 +1,4 @@
-from sas import Sas
+from igtsas import Sas
 from config_handler import *
 
 #let's init the configuration file

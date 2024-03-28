@@ -2,7 +2,7 @@ from sas import Sas
 from config_handler import *
 
 #let's init the configuration file
-config_handler = ConfigHandler()
+config_handler = configHandler()
 config_handler.read_config_file()
 
 

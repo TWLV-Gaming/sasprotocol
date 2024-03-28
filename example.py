@@ -1,7 +1,7 @@
 from igtsas import Sas
 from config_handler import *
 
-#let's init the configuration file
+# Let's init the configuration file
 config_handler = configHandler()
 config_handler.read_config_file()
 

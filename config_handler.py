@@ -14,4 +14,3 @@ class configHandler:
             return self.config.get(section, {}).get(key)
         else:
             raise ValueError("Configuration not loaded. Call read_config_file first.")
-        

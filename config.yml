@@ -1,0 +1,45 @@
+# configuration file for a software application, 
+# specifying settings for a connection to a device, 
+# events handling, debug logging, security, and machine-specific configurations.
+# Let's break down each section to understand what it does
+
+connection:
+    serial_port: /dev/ttyUSB0
+    # This specifies the serial port through which the software will communicate with a device. /dev/ttyUSB0 is commonly used for USB-to-serial adapters in Unix-like systems.
+    timeout: 2
+    # This sets a timeout value of 2 seconds for the serial connection.
+    # If a response is not received within this time frame, the operation may be aborted or retried, depending on the software's handling of timeouts.
+    baudrate: 19200
+    # This defines the baud rate for the serial communication, set to 19,200 bits per second. 
+    # The baud rate must match the setting on both the connecting device and the software to ensure proper communication.
+    infinite: False
+    # This likely controls whether the connection should be kept open indefinitely. 
+    # Setting it to False means the connection will not be kept open infinitely and will be closed according to other logic or parameters in the software.
+
+
+events:
+    poll_timeout: 0.5
+    # This sets a timeout for polling events to 0.5 seconds. Polling is a method used to check the status of a device or source of data at regular intervals.
+    poll_address: 0x82 #Standard Poll Address - On most moachines | Try 0x80 if 82 don't work
+    # Specifies the address to poll, in hexadecimal notation. 
+
+debug:
+    level: DEBUG # CRITICAL | ERROR | WARNING | INFO | DEBUG | NOTSET
+    # This sets the logging level for debugging purposes. 
+    # The value DEBUG indicates that detailed information about the software's operation will be logged, useful for troubleshooting. 
+    # Other levels are mentioned as comments, each providing a different verbosity of logging output.
+
+security:
+    key: 44
+    # This might be a security or encryption key used by the software for secure communication or data protection. 
+    # The specific use of this key depends on the application's security requirements.
+
+Machine:
+    pos_id: "B374A402"
+    # Identifies a specific machine or position with a unique identifier.
+    reg_key: "00000000000000000000000000000000000000"
+    # A registration or license key for the software or device.
+    asset_number: "15cd5b07" #Asset Magic Number - Works on every machine !
+    #  Tagged as an "Asset Magic Number," a unique identifier or key used by the software to recognize or authenticate a device or machine.
+    denomination: 0.01
+    # Specifies a denomination value, possibly relating to financial transactions or units of measurement managed by the machine or software.

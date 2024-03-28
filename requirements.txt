@@ -1,0 +1,15 @@
+# list the packages and their versions that need to be installed for the project to work. 
+# This ensures consistency across different environments, making it easier to share and deploy applications. 
+
+pythoncrc
+# CRC is a popular method for checking the integrity of data, ensuring that it has not been altered during transmission or storage.
+# The library provides functions to calculate CRC using various standard algorithms and polynomials.
+pyserial
+# Python library that encapsulates the access for the serial port. It provides backends for Python running on Windows, OSX, Linux, BSD (possibly any POSIX compliant system), and IronPython.
+pytest
+#  Python testing tool that helps you write better programs. 
+# It provides a rich API for writing test cases and is designed to be easy to start with but powerful on complex functional testing for applications and libraries.
+pytest-sugar
+# plugin for pytest that changes the default look and feel of pytest (progress bar, show tests that fail instantly). It makes the test output more readable and visually appealing.
+pyyaml
+# YAML parser and emitter for Python. YAML is a data serialization format designed to be human-friendly and work well with modern programming languages for common everyday tasks.

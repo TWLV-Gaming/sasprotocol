@@ -18,9 +18,24 @@ Follow these steps to set up your development environment:
 1. Clone the repository to your local machine:
 ```bash
 git clone https://github.com/TWLV-Gaming/sasprotocol.git
+```
 
 2. Navigate to the project Directory
+```bash
 cd sasprotocol
+```
 
 3. Install the required dependencies 
+```bash
 pip install -r requirements.txt
+```
+
+4. Adjust the configuration File
+```bash
+nano config.yml
+```
+
+5. Check to see if everything works
+```bash
+Python3 example.py
+```

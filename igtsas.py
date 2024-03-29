@@ -20,15 +20,15 @@ class Sas:
 
     def __init__(
             self,
-            port, # Sergial port full Address
-            timeout, # Connection Timeout
-            poll_address,
-            denom,
-            asset_number,
-            reg_key,  # Reg Key
-            pos_id,  # Pos ID
-            key,  # Key
-            debug_level,  # Debug Level
+            port,  # Serial Port full Address
+            timeout=2,  # Connection timeout
+            poll_address=0x82,  # Poll Address
+            denom=0.01,  # Denomination
+            asset_number="1",  # Asset Number
+            reg_key="0000000000000000000000000000000000000000",  # Reg Key
+            pos_id="B374A402",  # Pos ID
+            key="44",  # Key
+            debug_level="DEBUG",  # Debug Level
             perpetual=False,  # When this is true the lib will try forever to connect to the serial
             check_last_transaction = True,
             wait_for_wake_up = 0.00
@@ -552,7 +552,7 @@ class Sas:
         cmd = [0x0F]
         data = self._send_command(cmd, crc_need=False, size=28)
         if data:
-            meters = {}
+            meters = {} 
             if denom:
                 Meters.Meters.STATUS_MAP["total_cancelled_credits_meter"] = round(
                     int((binascii.hexlify(bytearray(data[1:5])))) * self.denom, 2

@@ -61,6 +61,3 @@ with open(filename, 'a', newline='') as csvfile:
     writer.writerow({field: response_data.get(field, '') for field in headers})
 
 print("Data successfully appended to the CSV file.")
-
-
-

@@ -592,3 +592,1179 @@ class Sas:
             return Meters.Meters.get_non_empty_status_map()
 
         return None
+    
+    def total_cancelled_credits(self, denom=True):
+        """Send total cancelled credits meter 
+
+            Parameters
+            ----------
+            denom : bool
+                If True will return the values of the meters in float format (i.e. 123.23)
+                otherwise as int (i.e. 12323)
+
+            Returns
+            -------
+            Mixed
+                Round | INT | None
+
+            Notes
+            -------
+            This is a LONG POLL COMMAND
+            """
+        cmd = [0x10]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def total_bet_meter(self, denom=True):
+        """Send total coin in meter
+        Parameters
+        ----------
+        denom : bool
+            If True will return the values of the meters in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Round | INT | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND - Pretty sure that the param should not be used @todo CHECK ME
+        """
+        cmd = [0x11]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def total_win_meter(self, denom=True):
+        """Send total coin out meter
+            Parameters
+            ----------
+            denom : bool
+                If True will return the values of the meters in float format (i.e. 123.23)
+                otherwise as int (i.e. 12323)
+
+            Returns
+            -------
+            Mixed
+                Round | INT | None
+
+            Notes
+            -------
+            This is a LONG POLL COMMAND - Pretty sure that the param should not be used @todo CHECK ME
+            """
+        cmd = [0x12]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def total_drop_meter(self, denom=True):
+        """Send total drop meter
+        Parameters
+        ----------
+        denom : bool
+            If True will return the values of the meters in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Round | INT | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND - Pretty sure that the param should not be used @todo CHECK ME
+        """
+        cmd = [0x13]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def total_jackpot_meter(self, denom=True):
+        """Send total jackpot meter
+        Parameters
+        ----------
+        denom : bool
+            If True will return the values of the meters in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Round | INT | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND - Pretty sure that the param should not be used @todo CHECK ME
+        """
+        cmd = [0x14]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def games_played_meter(self):
+        """Send games played meter
+
+        Returns
+        -------
+        Mixed
+            INT | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x15]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def games_won_meter(self, denom=True):
+        """Send games won meter
+        Parameters
+        ----------
+        denom : bool
+            If True will return the values of the meters in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Round | INT | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND - Pretty sure that the param should not be used @todo CHECK ME
+        """
+        cmd = [0x16]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def games_lost_meter(self):
+        """Send games won meter
+        Returns
+        -------
+        Mixed
+            INT | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x17]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def games_powerup_door_opened(self):
+        """Send meters 10 through 15
+
+        Returns
+        -------
+        Mixed
+            Object containing the translated meters or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x18]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            Meters.Meters.STATUS_MAP["games_last_power_up"] = int(
+                binascii.hexlify(bytearray(data[1:3]))
+            )
+            Meters.Meters.STATUS_MAP["games_last_slot_door_close"] = int(
+                binascii.hexlify(bytearray(data[1:5]))
+            )
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None
+
+    def meters_11_15(self, denom=True):
+        """Send meters 11 through 15
+
+        Parameters
+        ----------
+        denom : bool
+            If True will return the values of the meters in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Object containing the translated meters or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x19]
+        data = self._send_command(cmd, crc_need=False, size=24)
+        if data:
+            if not denom:
+                Meters.Meters.STATUS_MAP["total_bet_meter"] = int(
+                    binascii.hexlify(bytearray(data[1:5]))
+                )
+                Meters.Meters.STATUS_MAP["total_win_meter"] = int(
+                    binascii.hexlify(bytearray(data[5:9]))
+                )
+                Meters.Meters.STATUS_MAP["total_in_meter"] = int(
+                    binascii.hexlify(bytearray(data[9:13]))
+                )
+                Meters.Meters.STATUS_MAP["total_jackpot_meter"] = int(
+                    binascii.hexlify(bytearray(data[13:17]))
+                )
+                Meters.Meters.STATUS_MAP["games_played_meter"] = int(
+                    binascii.hexlify(bytearray(data[17:21]))
+                )
+            else:
+                Meters.Meters.STATUS_MAP["total_bet_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_win_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[5:9]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_in_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[9:13]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_jackpot_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[13:17]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["games_played_meter"] = int(
+                    binascii.hexlify(bytearray(data[17:21]))
+                )
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None
+
+    def current_credits(self, denom=True):
+        """Send current credits
+
+        Parameters
+        ----------
+        denom : bool
+            If True will return the value in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            round | int | None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x1A]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            if denom:
+                return round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+            else:
+                return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def handpay_info(self):
+        """Send handpay information
+
+        Returns
+        -------
+        Mixed
+            Object containing the translated meters or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND - Warning: is missing 2-byte BCD Partial pay amount @todo FIX ME !
+        """
+        cmd = [0x1B]
+        data = self._send_command(cmd, crc_need=False)
+        if data:
+            Meters.Meters.STATUS_MAP["bin_progressive_group"] = int(
+                binascii.hexlify(bytearray(data[1:2]))
+            )
+            Meters.Meters.STATUS_MAP["bin_level"] = int(
+                binascii.hexlify(bytearray(data[2:3]))
+            )
+            Meters.Meters.STATUS_MAP["amount"] = int(
+                binascii.hexlify(bytearray(data[3:8]))
+            )
+            Meters.Meters.STATUS_MAP["bin_reset_ID"] = int(
+                binascii.hexlify(bytearray(data[8:]))
+            )
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None
+
+    def meters(self, denom=True):
+        """Send Meters
+
+        Parameters
+        ----------
+        denom : bool
+            If True will return the value in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Object containing the translated meters (in int or float) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x1C]
+        data = self._send_command(cmd, crc_need=False, size=36)
+        if data:
+            if not denom:
+                Meters.Meters.STATUS_MAP["total_bet_meter"] = int(
+                    binascii.hexlify(bytearray(data[1:5]))
+                )
+                Meters.Meters.STATUS_MAP["total_win_meter"] = int(
+                    binascii.hexlify(bytearray(data[5:9]))
+                )
+                Meters.Meters.STATUS_MAP["total_drop_meter"] = int(
+                    binascii.hexlify(bytearray(data[9:13]))
+                )
+                Meters.Meters.STATUS_MAP["total_jackpot_meter"] = int(
+                    binascii.hexlify(bytearray(data[13:17]))
+                )
+                Meters.Meters.STATUS_MAP["games_played_meter"] = int(
+                    binascii.hexlify(bytearray(data[17:21]))
+                )
+                Meters.Meters.STATUS_MAP["games_won_meter"] = int(
+                    binascii.hexlify(bytearray(data[21:25]))
+                )
+                Meters.Meters.STATUS_MAP["slot_door_opened_meter"] = int(
+                    binascii.hexlify(bytearray(data[25:29]))
+                )
+                Meters.Meters.STATUS_MAP["power_reset_meter"] = int(
+                    binascii.hexlify(bytearray(data[29:33]))
+                )
+            else:
+                Meters.Meters.STATUS_MAP["total_bet_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[1:5]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_win_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[5:9]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_drop_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[9:13]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_jackpot_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[13:17]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["games_played_meter"] = int(
+                    binascii.hexlify(bytearray(data[17:21]))
+                )
+                Meters.Meters.STATUS_MAP["games_won_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[21:25]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["slot_door_opened_meter"] = int(
+                    binascii.hexlify(bytearray(data[25:29]))
+                )
+                Meters.Meters.STATUS_MAP["power_reset_meter"] = int(
+                    binascii.hexlify(bytearray(data[29:33]))
+                )
+
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None
+
+    def total_bill_meters(self):
+        """Send total bill meters (# of bills)
+
+        Returns
+        -------
+        Mixed
+            Object containing the translated meters or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x1E]
+        data = self._send_command(cmd, crc_need=False, size=28)
+        if data:
+            Meters.Meters.STATUS_MAP["s1_bills_accepted_meter"] = int(
+                binascii.hexlify(bytearray(data[1:5]))
+            )
+            Meters.Meters.STATUS_MAP["s5_bills_accepted_meter"] = int(
+                binascii.hexlify(bytearray(data[5:9]))
+            )
+            Meters.Meters.STATUS_MAP["s10_bills_accepted_meter"] = int(
+                binascii.hexlify(bytearray(data[9:13]))
+            )
+            Meters.Meters.STATUS_MAP["s20_bills_accepted_meter"] = int(
+                binascii.hexlify(bytearray(data[13:17]))
+            )
+            Meters.Meters.STATUS_MAP["s50_bills_accepted_meter"] = int(
+                binascii.hexlify(bytearray(data[17:21]))
+            )
+            Meters.Meters.STATUS_MAP["s100_bills_accepted_meter"] = int(
+                binascii.hexlify(bytearray(data[21:25]))
+            )
+
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None
+
+    def gaming_machine_id(self):
+        """Gaming machine information command
+        @todo Check this one...something smell bad
+
+        According to doc:
+            =====================  ======  =================  ========================================================================================================================================
+            Field                  Bytes   Value              Description
+            =====================  ======  =================  ========================================================================================================================================
+            Address                1       binary 01-7F       Address of gaming machine responding
+            Command                1       binary 1F          Gaming machine information command
+            Game ID                2       ASCII ??           Game ID in ASCII. (see Table C-1 in Appendix C)
+            Additional ID          3       ASCII ???          Additional game ID in ASCII. If the gaming machine does not support an additional ID, this field should be padded with ASCII "0"s.
+            Denomination           1       binary 00-FF       Binary number representing the SAS accounting denomination of this gaming machine
+            Max bet                1       binary 01-FF       Largest configured max bet for the gaming machine, or FF if largest configured max bet greater than or equal to 255
+            Progressive Group      1       binary 00-FF       Current configured progressive group for the gaming machine
+            Game options           2       binary 0000-FFFF   Game options selected by the operator. The bit configurations are dependent upon the type of gaming machine.
+            Paytable ID            6       ASCII ??????       Paytable ID in ASCII
+            Base %                 4       ASCII ??.??        Theoretical base pay back percentage for maximum bet in ASCII. The decimal is implied and NOT transmitted.
+            CRC                    2       binary 0000-FFFF   16-bit CRC
+            =====================  ======  =================  ========================================================================================================================================
+
+        """
+        # 1F
+        cmd = [0x1F]
+        data = self._send_command(cmd, crc_need=False, size=24)
+        if data is not None:
+            denom = Denomination.Denomination.get_status(data[6:7].hex())
+            self.log.info("Recognized " + str(denom))
+            self.denom = denom
+            return denom
+            # meters['ASCII_game_ID']=(((data[1:3])))
+            # meters['ASCII_additional_ID']=(((data[3:6])))
+            # meters['bin_denomination']=int(self.hexlify(self.bytearray(data[4:5])))
+            # meters['bin_max_bet']=(self.hexlify(self.bytearray(data[7:8])))
+            # meters['bin_progressive_mode']=int(self.hexlify(self.bytearray(data[8:9])))
+            # meters['bin_game_options']=(self.hexlify(self.bytearray(data[9:11])))
+            # meters['ASCII_paytable_ID']=(((data[11:17])))
+            # meters['ASCII_base_percentage']=(((data[17:21])))
+
+            # return data
+        return None
+
+    def total_dollar_value_of_bills_meter(self):
+        """Send total dollar value of bills meter
+
+        Returns
+        -------
+        Mixed
+            int | none
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x20]
+        data = self._send_command(cmd, crc_need=False, size=8)
+
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:])))
+
+        return None
+
+    def rom_signature_verification(self):
+        """ROM Signature Verification
+
+        Returns
+        -------
+        Mixed
+            int | none
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x21, 0x00, 0x00]
+        data = self._send_command(cmd, crc_need=True)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:3])))
+
+        return None
+
+    def true_coin_in(self):
+        """Send true coin in
+
+        Returns
+        -------
+        Mixed
+            int (meter in # of coins/tokens) | none
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x2A]
+        data = self._send_command(cmd, crc_need=False)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def true_coin_out(self):
+        """Send true coin out
+
+        Returns
+        -------
+        Mixed
+            int (meter in # of coins/tokens) | none
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x2B]
+        data = self._send_command(cmd, crc_need=False)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def curr_hopper_level(self):
+        """Send current hopper level
+
+        Returns
+        -------
+        Mixed
+            int (meter in # of coins/tokens) | none
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x2C]
+        data = self._send_command(cmd, crc_need=False)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def total_hand_paid_cancelled_credit(self):
+        """Send total hand paid cancelled credits
+
+        Notes
+        -------
+        WARNING ! @todo i return: 2-byte BCD game number and 4-byte BCD meter in SAS accounting denom units. Therefore this code is WRONG
+
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x2D]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def delay_game(self, delay_time=100):
+        """Delay Game
+        Parameters
+        ----------
+        delay_time : int
+            How long in ms to delay a game
+            
+        Returns
+        -------
+        bool
+            True for a successful operation, False otherwise
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        delay_time = str(delay_time)
+        delay_fmt = "" + ("0" * (4 - len(delay_time)) + delay_time)
+        cmd = [0x2E]
+        count = 0
+        for i in range(len(delay_fmt) // 2):
+            cmd.append(int(delay_fmt[count: count + 2], 16))
+            count += 2
+        if self._send_command(cmd, True, crc_need=True) == self.address:
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def selected_meters_for_game():
+        # 2F
+        # TODO: selected_meters_for_game
+        # As per above...NOT ME ! @well-it-wasnt-me
+        return None
+
+    def send_1_bills_in_meters(self):
+        """Send 1$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x31]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_2_bills_in_meters(self):
+        """Send 2$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x32]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_5_bills_in_meters(self):
+        """Send 5$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x33]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_10_bills_in_meters(self):
+        """Send 10$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x34]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_20_bills_in_meters(self):
+        """Send 20$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x35]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_50_bills_in_meters(self):
+        """Send 50$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x36]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_100_bills_in_meters(self):
+        """Send 100$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x37]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_500_bills_in_meters(self):
+        """Send 500$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x38]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_1000_bills_in_meters(self):
+        """Send 1.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x39]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_200_bills_in_meters(self):
+        """Send 200$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x3A]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_25_bills_in_meters(self):
+        """Send 25$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x3B]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_2000_bills_in_meters(self):
+        """Send 2.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x3C]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+        return None
+
+    def cash_out_ticket_info(self):
+        """Send cash out ticket information
+
+        Returns
+        -------
+        mixed
+            dict or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x3D]
+        data = self._send_command(cmd, crc_need=False)
+        if data:
+            return {
+                "cashout_ticket_number": int(binascii.hexlify(bytearray(data[1:3]))),
+                "cashout_amount_in_cents": int(binascii.hexlify(bytearray(data[3:]))),
+            }
+
+        return None
+
+    def send_2500_bills_in_meters(self):
+        """Send 2.500$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x3E]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_5000_bills_in_meters(self):
+        """Send 5.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x3F]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_10000_bills_in_meters(self):
+        """Send 10.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x40]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_20000_bills_in_meters(self):
+        """Send 20.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x41]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_25000_bills_in_meters(self):
+        """Send 25.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x42]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_50000_bills_in_meters(self):
+        """Send 50.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x43]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_100000_bills_in_meters(self):
+        """Send 100.000$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x44]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def send_250_bills_in_meters(self):
+        """Send 250$ bills in meters
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x45]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def credit_amount_of_all_bills_accepted(self):
+        """Send credit amount of all bills accepted
+
+        Returns
+        -------
+        mixed
+            meter in SAS accounting denom units or None
+
+        """
+        cmd = [0x46]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def coin_amount_accepted_from_external_coin_acceptor(self):
+        """Send coin amount accepted from an external coin acceptor
+
+        Returns
+        -------
+        mixed
+             meter in SAS accounting denom units or None
+
+        """
+        cmd = [0x47]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def last_accepted_bill_info(self):
+        """ Send last accepted bill information
+        Returns
+        -------
+        mixed
+            dict or None
+        """
+        cmd = [0x48]
+        data = self._send_command(cmd, crc_need=False)
+        if data:
+            Meters.Meters.STATUS_MAP["country_code"] = int(
+                binascii.hexlify(bytearray(data[1:2]))
+            )
+            Meters.Meters.STATUS_MAP["bill_denomination"] = int(
+                binascii.hexlify(bytearray(data[2:3]))
+            )
+            Meters.Meters.STATUS_MAP["meter_for_accepted_bills"] = int(
+                binascii.hexlify(bytearray(data[3:6]))
+            )
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None
+
+    def number_of_bills_currently_in_stacker(self):
+        """ Send number of bills currently in the stacker
+        Returns
+        -------
+        mixed
+            int ( meter in # of bills )  or None
+        """
+        cmd = [0x49]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def total_credit_amount_of_all_bills_in_stacker(self):
+        """Send total credit amount of all bills currently in the stacker
+
+        Returns
+        -------
+        mixed
+            int (# of bills) or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x4A]
+        data = self._send_command(cmd, crc_need=False, size=8)
+        if data:
+            return int(binascii.hexlify(bytearray(data[1:5])))
+
+        return None
+
+    def set_secure_enhanced_validation_id(
+            self, machine_id=[0x01, 0x01, 0x01], seq_num=[0x00, 0x00, 0x01]
+    ):
+        """
+        For a gaming machine to perform secure enhanced ticket/receipt/handpay validation, the host must use
+        the type S long poll. The host may also use this long poll to retrieve the current gaming
+        machine validation ID and validation sequence number by issuing the 4C command with a gaming
+        machine validation ID of zero. If a gaming machine is not configured to perform secure enhanced
+        validation, or is responding to a host that is not the validation controller, it ignores this long poll
+
+        :param machine_id: 3 binary - Gaming machine validation ID number
+        :param seq_num: 3 binary - Starting sequence number (incremented before being assigned to each event)
+        :return:
+        """
+        # 4C
+        # FIXME: set_secure_enhanced_validation_ID @todo... im beat...@well-it-wasnt-me
+        cmd = [0x4C, machine_id, seq_num]
+        data = self._send_command(cmd, True, crc_need=True)
+        if data:
+            TitoStatement.Tito.STATUS_MAP["machine_ID"] = int(
+                binascii.hexlify(bytearray(data[1:4]))
+            )
+            TitoStatement.Tito.STATUS_MAP["sequence_number"] = int(
+                binascii.hexlify(bytearray(data[4:8]))
+            )
+            return data
+
+        return None

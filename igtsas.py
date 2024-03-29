@@ -266,4 +266,43 @@ class Sas:
             return rsp[1:-2]
     
 
+    def events_poll(self):
+        """Events Poll Function
         
+        Polls for an event from the connected device and processes the received data.
+
+        This method configures the event port, constructs a command using the device's
+        address, and sends a polling request to the device. It attempts to read the
+        event response from the device. If no response is received, a NoSasConnection
+        exception is raised. If a response is received, the method decodes the event status.
+    
+        If the event status is unknown (KeyError), an EMGGpollBadResponse exception is raised.
+        For any other exceptions, the exception is re-raised without handling.
+
+        The method then checks if the new event differs from the last known event. If it does,
+        the last_gpoll_event is updated with the new event. If the new event is the same as the
+        last known event, the event is set to 'No Activity'.
+
+        Returns:
+            str: The current event status, which can be a new event, 'No Activity', or an error indicator."""
+
+        self._conf_event_port()
+
+        cmd = [0x80 + self.address]
+        self.connection.write([self.poll_address])
+
+        try:
+            self.connection.write(cmd)
+            event = self.connection.read(1)
+            if event == "":
+                raise NoSasConnection
+            event = GPoll.GPoll.get_status(event.hex())
+        except KeyError as e:
+            raise EMGGpollBadResponse
+        except Exception as e:
+            raise e
+        if self.last_gpoll_event != event:
+            self.last_gpoll_event = event
+        else:
+            event = 'No Activity'
+        return event

@@ -26,6 +26,8 @@ Follow these steps to set up your development environment:
 ```bash
 git clone https://github.com/TWLV-Gaming/sasprotocol.git
 
-2. cd sasprotocol
+2. Navigate to the project Director
+cd sasprotocol
 
-3. pip install -r requirements.txt
+3. Install the required dependencies 
+pip install -r requirements.txt

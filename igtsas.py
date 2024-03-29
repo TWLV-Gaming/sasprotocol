@@ -128,7 +128,7 @@ class Sas:
                     time.sleep(1)
 
                 if response != b"":
-                    self.address = int(binascii.hexlify(response))
+                    self.address = int(binascii.hexlify(response),16)
                     self.machine_n = response.hex()
                     self.log.info("Address Recognized " + str(self.address))
                     break
@@ -546,6 +546,9 @@ class Sas:
         -------
         This is a LONG POLL COMMAND
         """
+        # Ensure self.denom is set to a default value if it's None
+        if self.denom is None:
+            self.denom = 0.01 
         cmd = [0x0F]
         data = self._send_command(cmd, crc_need=False, size=28)
         if data:

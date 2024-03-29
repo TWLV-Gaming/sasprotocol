@@ -34,7 +34,7 @@ security:
     # This might be a security or encryption key used by the software for secure communication or data protection. 
     # The specific use of this key depends on the application's security requirements.
 
-Machine:
+machine:
     pos_id: "B374A402"
     # Identifies a specific machine or position with a unique identifier.
     reg_key: "00000000000000000000000000000000000000"
@@ -43,3 +43,5 @@ Machine:
     #  Tagged as an "Asset Magic Number," a unique identifier or key used by the software to recognize or authenticate a device or machine.
     denomination: 0.01
     # Specifies a denomination value, possibly relating to financial transactions or units of measurement managed by the machine or software.
+    location: 24
+    operator: 56

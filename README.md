@@ -1,8 +1,5 @@
 ![TWLV_Logo_Mint_2](https://github.com/TWLV-Gaming/sasprotocol/assets/164931022/4b270dad-7f0d-4f40-8d1e-3022a23d046a)
 
-# sasprotocol
-The Main Repository for All Code and Config Files related to the SAS Protocol
-
 
 # Slot Machine Accounting System Protocol
 
@@ -13,10 +10,6 @@ This project implements a comprehensive Accounting System Protocol for slot mach
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 
 ### Installing
 
@@ -26,7 +19,7 @@ Follow these steps to set up your development environment:
 ```bash
 git clone https://github.com/TWLV-Gaming/sasprotocol.git
 
-2. Navigate to the project Director
+2. Navigate to the project Directory
 cd sasprotocol
 
 3. Install the required dependencies 

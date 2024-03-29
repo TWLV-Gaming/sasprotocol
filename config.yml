@@ -43,5 +43,5 @@ machine:
     #  Tagged as an "Asset Magic Number," a unique identifier or key used by the software to recognize or authenticate a device or machine.
     denomination: 0.01
     # Specifies a denomination value, possibly relating to financial transactions or units of measurement managed by the machine or software.
-    location: "24"
-    operator: "Watts"
+    location: 24
+    operator: 56

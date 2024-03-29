@@ -548,7 +548,7 @@ class Sas:
         """
         # Ensure self.denom is set to a default value if it's None
         if self.denom is None:
-            self.denom = 0.01  # or any other appropriate default value
+            self.denom = 0.01 
         cmd = [0x0F]
         data = self._send_command(cmd, crc_need=False, size=28)
         if data:

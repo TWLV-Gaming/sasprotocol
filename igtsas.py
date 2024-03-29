@@ -306,3 +306,289 @@ class Sas:
         else:
             event = 'No Activity'
         return event
+
+    def shutdown(self):
+        """Make the EGM Unplayable"""
+
+        if self._send_command([0x01], True, crc_need=True) == self.address:
+            return True
+        
+        return False
+    
+    def startup(self):
+        """Synchronize to the host polling Cycle - Use start up to enable shutdown"""
+
+        if self._send_command([0x02], True, crc_need=True) == self.address:
+            return True
+        
+        return False
+    
+    def sound_off(self):
+        """Disable VLT sounds
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x03], True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def sound_on(self):
+        """Enable VLT sounds
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x04], True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def reel_spin_game_sounds_disabled(self):
+        """Reel spin or game play sounds disabled
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x05], True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def enable_bill_acceptor(self):
+        """Enable the Bill Acceptor
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x06], True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def disable_bill_acceptor(self):
+        """Disable the Bill Acceptor
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x07], True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def configure_bill_denom(
+            self, bill_denom=[0xFF, 0xFF, 0xFF], action_flag=[0xFF]
+    ):
+        """Configure Bill Denominations
+
+        Parameters
+        ----------
+        bill_denom : dict
+            Bill denominations sent LSB first (0 = disable, 1 = enable)
+
+            =====  =====  ========  ========    =====
+            Bit    LSB    2nd Byte  3rd Byte    MSB
+            =====  =====  ========  ========    =====
+            0      $1     $200      $20000      TBD
+            1      $2     $250      $25000      TBD
+            2      $5     $500      $50000      TBD
+            3      $10    $1000     $100000     TBD
+            4      $20    $2000     $200000     TBD
+            5      $25    $2500     $250000     TBD
+            6      $50    $5000     $500000     TBD
+            7      $100   $10000    $1000000    TBD
+            =====  =====  ========  ========    =====
+
+        action_flag : dict
+            Action of bill acceptor after accepting a bill
+
+            =====  ===========
+            Bit    Description
+            =====  ===========
+            0      0 = Disable bill acceptor after each accepted bill
+
+                   1 = Keep bill acceptor enabled after each accepted bill
+            =====  ===========
+
+        Returns
+        -------
+        bool
+            True if successful, False otherwise.
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x08, 0x00]
+        cmd.extend(bill_denom)
+        cmd.extend(action_flag)
+
+        if self._send_command(cmd, True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def en_dis_game(self, game_number=None, en_dis=False):
+        """Enable or Disable a specific game
+
+        Parameters
+        ----------
+        game_number : bcd
+            0001-9999 Game number
+
+        en_dis : bool
+            Default is False. True enable a game | False disable it
+
+        Returns
+        -------
+        bool
+            True if successful, False otherwise.
+
+        """
+        if not game_number:
+            game_number = self.selected_game_number()
+
+        game = int(str(game_number), 16)
+
+        if en_dis:
+            en_dis = [0]
+        else:
+            en_dis = [1]
+
+        cmd = [0x09]
+
+        cmd.extend([((game >> 8) & 0xFF), (game & 0xFF)])
+        cmd.extend(bytearray(en_dis))
+
+        if self._send_command(cmd, True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def enter_maintenance_mode(self):
+        """Put the VLT in a state of maintenance mode
+            Returns
+            -------
+            bool
+                True if successful, False otherwise.
+
+            Notes
+            -------
+            This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x0A], True, crc_need=True) == self.address:
+            return True
+
+        return False
+
+    def exit_maintenance_mode(self):
+        """Recover  the VLT from a state of maintenance mode
+            Returns
+            -------
+            bool
+                True if successful, False otherwise.
+
+            Notes
+            -------
+            This is a LONG POLL COMMAND
+        """
+        if self._send_command([0x0B], True, crc_need=True) == self.address:
+            return True
+
+        return False
+    
+    def en_dis_rt_event_reporting(self, enable=False):
+        """For situations where real time event reporting is desired, the gaming machine can be configured to report events in response to long polls as well as general polls. This allows events such as reel stops, coins in, game end, etc., to be reported in a timely manner
+            Returns
+            -------
+            bool
+                True if successful, False otherwise.
+
+            See Also
+            --------
+            WiKi : https://github.com/zacharytomlinson/saspy/wiki/4.-Important-To-Know#event-reporting
+        """
+        if not enable:
+            enable = [0]
+        else:
+            enable = [1]
+
+        cmd = [0x0E]
+        cmd.extend(bytearray(enable))
+
+        if self._send_command(cmd, True, crc_need=True) == self.address:
+            return True
+
+        return False
+    
+    def send_meters_10_15(self, denom=True):
+        """Send meters 10 through 15
+
+        Parameters
+        ----------
+        denom : bool
+            If True will return the values of the meters in float format (i.e. 123.23)
+            otherwise as int (i.e. 12323)
+
+        Returns
+        -------
+        Mixed
+            Object containing the translated meters or None
+
+        Notes
+        -------
+        This is a LONG POLL COMMAND
+        """
+        cmd = [0x0F]
+        data = self._send_command(cmd, crc_need=False, size=28)
+        if data:
+            meters = {}
+            if denom:
+                Meters.Meters.STATUS_MAP["total_cancelled_credits_meter"] = round(
+                    int((binascii.hexlify(bytearray(data[1:5])))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_in_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[5:9]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_out_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[9:13]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_droup_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[13:17]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["total_jackpot_meter"] = round(
+                    int(binascii.hexlify(bytearray(data[17:21]))) * self.denom, 2
+                )
+                Meters.Meters.STATUS_MAP["games_played_meter"] = int(
+                    binascii.hexlify(bytearray(data[21:25]))
+                )
+            else:
+                Meters.Meters.STATUS_MAP["total_cancelled_credits_meter"] = int(
+                    (binascii.hexlify(bytearray(data[1:5])))
+                )
+                Meters.Meters.STATUS_MAP["total_in_meter"] = int(
+                    binascii.hexlify(bytearray(data[5:9]))
+                )
+                Meters.Meters.STATUS_MAP["total_out_meter"] = int(
+                    binascii.hexlify(bytearray(data[9:13]))
+                )
+                Meters.Meters.STATUS_MAP["total_droup_meter"] = int(
+                    binascii.hexlify(bytearray(data[13:17]))
+                )
+                Meters.Meters.STATUS_MAP["total_jackpot_meter"] = int(
+                    binascii.hexlify(bytearray(data[17:21]))
+                )
+                Meters.Meters.STATUS_MAP["games_played_meter"] = int(
+                    binascii.hexlify(bytearray(data[21:25]))
+                )
+
+            return Meters.Meters.get_non_empty_status_map()
+
+        return None

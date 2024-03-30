@@ -34,19 +34,21 @@ response_data = sas.send_meters_10_15()
 print(response_data)
 
 # Assuming response_data is a dictionary with the meter readings
+# Change the Poll Type for 
 response_data.update({
-    "Transaction ID": str(uuid.uuid4()),
-    "Datetime of Run": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-    "Location": config_handler.get_config_value("machine", "location"),  # Corrected case
+    "poll_type":"R",
+    "datetime_poll": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    "location": config_handler.get_config_value("machine", "location"),  # Corrected case
     "Operator": config_handler.get_config_value("machine", "operator"),  # Corrected case
-    "Machine Address": machine_n_int  # Use "Machine Address" for clarity
+    "sas_address": machine_n_int,  # Use "Machine Address" for clarity
+    
 })
 
 # Updated headers to include "Machine Address"
 headers = [
     "total_cancelled_credits_meter", "total_in_meter", "total_out_meter",
     "total_droup_meter", "total_jackpot_meter", "games_played_meter",
-    "Transaction ID", "Datetime of Run", "Location", "Operator", "Machine Address"  # Correct header
+     "datetime_poll", "location", "operator", "sas_address","poll_type"  # Correct header
 ]
 
 filename = "meters_data.csv"

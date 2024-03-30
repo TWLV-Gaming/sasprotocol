@@ -36,11 +36,11 @@ print(response_data)
 # Assuming response_data is a dictionary with the meter readings
 # Change the Poll Type for 
 response_data.update({
-    "poll_type":"R",
     "datetime_poll": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-    "location": config_handler.get_config_value("machine", "location"),  # Corrected case
-    "Operator": config_handler.get_config_value("machine", "operator"),  # Corrected case
-    "sas_address": machine_n_int,  # Use "Machine Address" for clarity
+    "location_id": config_handler.get_config_value("machine", "location_id"), 
+    "operator_id": config_handler.get_config_value("machine", "operator_id"),  
+    "sas_address": machine_n_int, 
+    "meter_id": str(uuid.uuid4())
     
 })
 
@@ -48,7 +48,7 @@ response_data.update({
 headers = [
     "total_cancelled_credits_meter", "total_in_meter", "total_out_meter",
     "total_droup_meter", "total_jackpot_meter", "games_played_meter",
-     "datetime_poll", "location", "operator", "sas_address","poll_type"  # Correct header
+     "datetime_poll", "location_id", "operator_id", "sas_address","meter_id"
 ]
 
 filename = "meters_data.csv"

@@ -33,33 +33,53 @@ print(f"Machine Address (integer): {machine_n_int}")
 response_data = sas.send_meters_10_15()
 print(response_data)
 
-# Assuming response_data is a dictionary with the meter readings
-# Change the Poll Type for 
+# Update response_data with additional information
 response_data.update({
     "datetime_poll": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     "location_id": config_handler.get_config_value("machine", "location_id"), 
     "operator_id": config_handler.get_config_value("machine", "operator_id"),  
     "sas_address": machine_n_int, 
-    "meter_id": str(uuid.uuid4())
-    
+    "meter_id": str(uuid.uuid4())  
 })
 
-# Updated headers to include "Machine Address"
-headers = [
+# List of mandatory fields
+mandatory_fields = [
     "total_cancelled_credits_meter", "total_in_meter", "total_out_meter",
-    "total_droup_meter", "total_jackpot_meter", "games_played_meter",
-     "datetime_poll", "location_id", "operator_id", "sas_address","meter_id"
+    "total_droup_meter", "games_played_meter",
+    "datetime_poll", "location_id", "operator_id", "sas_address","meter_id"
 ]
 
-filename = "meters_data.csv"
-file_exists = os.path.isfile(filename) and os.path.getsize(filename) > 0
+# Validate mandatory fields are not empty and numeric fields are non-negative
+def validate_data(data, fields):
+    missing_fields = [field for field in fields if not data.get(field)]
+    if missing_fields:
+        return f"Mandatory fields missing: {', '.join(missing_fields)}."
 
-with open(filename, 'a', newline='') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=headers)
-    
-    if not file_exists:
-        writer.writeheader()
-    
-    writer.writerow({field: response_data.get(field, '') for field in headers})
+    # Check for non-negative numeric values
+    numeric_fields = [
+        "total_cancelled_credits_meter", "total_in_meter", "total_out_meter",
+        "total_droup_meter", "total_jackpot_meter", "games_played_meter"
+    ]
+    negative_fields = [field for field in numeric_fields if int(data.get(field, 0)) < 0]
+    if negative_fields:
+        return f"Numeric fields must be non-negative. Negative fields: {', '.join(negative_fields)}."
 
-print("Data successfully appended to the CSV file.")
+    return "Valid"
+
+validation_result = validate_data(response_data, mandatory_fields)
+if validation_result != "Valid":
+    print(validation_result + " Data not written to CSV.")
+else:
+    # If data is valid, proceed to write to the CSV
+    filename = "meters_data.csv"
+    file_exists = os.path.isfile(filename) and os.path.getsize(filename) > 0
+
+    with open(filename, 'a', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=mandatory_fields)
+        
+        if not file_exists:
+            writer.writeheader()
+        
+        writer.writerow({field: response_data.get(field, '') for field in mandatory_fields})
+
+    print("Data successfully appended to the CSV file.")

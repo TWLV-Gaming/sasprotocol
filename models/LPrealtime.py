@@ -136,15 +136,59 @@ class GPollrealtime:
        
     }
 
+    
     @classmethod
-    def get_status(cls, key):
+    def get_polltype(cls, key):
         """Get the status value for the given key.
 
         Args:
             key (str): The key for the status.
 
         Returns:
-            str: The corresponding status value or an error message if the key is not found.
+            str: The first piece of the corresponding status value or an error message if the key is not found.
         """
-        # Use get() method to retrieve the value, or return an error message.
-        return cls.STATUS_MAP.get(key, f"Unknown key: {key}")
+        # Directly retrieve the value or a default error message.
+        status_value = cls.STATUS_MAP.get(key, [f"Unknown key: {key}", "N/A"])
+
+        # Assuming status_value could be a list or a dict, you handle it accordingly.
+        # For simplification, if it's a list, return the first element (description or error message).
+        if isinstance(status_value, list):
+            return status_value[0]
+        elif isinstance(status_value, dict):
+            # If it's a dict and you expect certain keys, adjust accordingly.
+            # Example: return status_value["description"]
+            return status_value  # Adjust based on your dict structure.
+        else:
+            # Fallback in case it's neither (for robustness, though it shouldn't happen with the given setup)
+            return "Invalid status data"
+    
+    @classmethod
+    def get_event(cls, key):
+        """Get the status value for the given key.
+
+        Args:
+            key (str): The key for the status.
+
+        Returns:
+            str: The first piece of the corresponding status value or an error message if the key is not found.
+        """
+        # Directly retrieve the value or a default error message.
+        status_value = cls.STATUS_MAP.get(key, [f"Unknown key: {key}", "N/A"])
+
+        # Assuming status_value could be a list or a dict, you handle it accordingly.
+        # For simplification, if it's a list, return the first element (description or error message).
+        if isinstance(status_value, list):
+            return status_value[1]
+        elif isinstance(status_value, dict):
+            # If it's a dict and you expect certain keys, adjust accordingly.
+            # Example: return status_value["description"]
+            return status_value  # Adjust based on your dict structure.
+        else:
+            # Fallback in case it's neither (for robustness, though it shouldn't happen with the given setup)
+            return "Invalid status data"
+
+
+
+    
+
+

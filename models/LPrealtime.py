@@ -1,5 +1,12 @@
+"""
+Module for handling LPrealtime classes.
+
+This module provides functionalities for managing GPoll and Long poll Events, including
+retrieving poll types and event statuses based on specific keys.
+"""
+
 class LPrealtime:
-    """Class representing the GPoll Events"""
+    """Class representing the Long Poll Events"""
 
     STATUS_MAP = {
         "01": ["S", "Shutdown (lock out player)"],
@@ -8,7 +15,7 @@ class LPrealtime:
         "04": ["S", "Sound on (all sounds enabled)"],
         "05": ["S", "Reel spin or game play sounds disabled"],
         "06": ["S", "Enable bill acceptor"],
-        "07": ["S", "Diable bill accpetor"],
+        "07": ["S", "Disable bill accpetor"],
         "08": ["S", "Configure bill denominations"],
         "09": ["M", "Enable/disable game n"],
         "0A": ["S", "Enter maintenance mode"],
@@ -20,7 +27,7 @@ class LPrealtime:
         "12": ["R", "Send toal coin out meter"],
         "13": ["R", "Send total drop meter"],
         "14": ["R", "Send total jackpot meter"],
-        "15": ["R", "Send Games Played Meter"],
+        "15": ["R", "Send games played meter"],
         "16": ["R", "Send games won meter"],
         "17": ["R", "Send games lost meter"],
         "18": ["R", "Send games since last power up and games since last door closure"],
@@ -38,32 +45,32 @@ class LPrealtime:
         "2D": ["M", "Send total hand paid cancelled credits"],
         "2E": ["S", "Delay game"],
         "2F": ["M", "Send selected meters for game n"],
-        "31": ["R", "Send $1.00 bills meter"],
-        "32": ["R", "Send $2.00 bills meter"],
-        "33": ["R", "Send $5.00 bills meter"],
-        "34": ["R", "Send $10.00 bills meter"],
-        "35": ["R", "Send $20.00 bills meter"],
-        "36": ["R", "Send $50.00 bills meter"],
-        "37": ["R", "Send $100.00 bills meter"],
-        "38": ["R", "Send $500.00 bills meter"],
-        "39": ["R", "Send $1,000.00 bills meter"],
-        "3A": ["R", "Send $200.00 bills meter"],
-        "3B": ["R", "Send $25.00 bills meter"],
-        "3C": ["R", "Send $2,000.00 bills meter"],
+        "31": ["R", "Send $1.00 bills in meter"],
+        "32": ["R", "Send $2.00 bills in meter"],
+        "33": ["R", "Send $5.00 bills in meter"],
+        "34": ["R", "Send $10.00 bills in meter"],
+        "35": ["R", "Send $20.00 bills in meter"],
+        "36": ["R", "Send $50.00 bills in meter"],
+        "37": ["R", "Send $100.00 bills in meter"],
+        "38": ["R", "Send $500.00 bills in meter"],
+        "39": ["R", "Send $1,000.00 bills in meter"],
+        "3A": ["R", "Send $200.00 bills in meter"],
+        "3B": ["R", "Send $25.00 bills in meter"],
+        "3C": ["R", "Send $2,000.00 bills in meter"],
         "3D": ["R", "Send cash out ticket information"],
-        "3E": ["R", "Send $2,500.00 bills meter"],
-        "3F": ["R", "Send $5,000.00 bills meter"],
-        "40": ["R", "Send $10,000.00 bills meter"],
-        "41": ["R", "Send $20,000.00 bills meter"],
-        "42": ["R", "Send $25,000.00 bills meter"],
-        "43": ["R", "Send $50,000.00 bills meter"],
-        "44": ["R", "Send $100,000.00 bills meter"],
-        "45": ["R", "Send $250.00 bills meter"],
+        "3E": ["R", "Send $2,500.00 bills in meter"],
+        "3F": ["R", "Send $5,000.00 bills in meter"],
+        "40": ["R", "Send $10,000.00 bills in meter"],
+        "41": ["R", "Send $20,000.00 bills in meter"],
+        "42": ["R", "Send $25,000.00 bills in meter"],
+        "43": ["R", "Send $50,000.00 bills in meter"],
+        "44": ["R", "Send $100,000.00 bills in meter"],
+        "45": ["R", "Send $250.00 bills in meter"],
         "46": ["R", "Send credit amout of all bills accpeted"],
         "47": ["R", "Send coin amout accepted from an external coin acceptor"],
-        "48": ["R", "Send las accepted bill information"],
+        "48": ["R", "Send last accepted bill information"],
         "49": ["R", "Send number of bills currently in the stacker"],
-        "4A": ["R", "Send Total credit amout of all bills currently in the stacker"],
+        "4A": ["R", "Send total credit amout of all bills currently in the stacker"],
         "4C": ["S", "Set secure enhanced validation ID"],
         "4D": ["S", "Send enhanced validation information"],
         "4F": ["R", "Send current hopper status"],
@@ -74,7 +81,7 @@ class LPrealtime:
         "54": ["R", "Send SAS version ID and gaming machine serial number"],
         "55": ["R", "Send selected game number"],
         "56": ["R", "Send enabled game numbers"],
-        "57": ["R", "Send pend cashout information"],
+        "57": ["R", "Send pending cashout information"],
         "58": ["S", "Receive validation number"],
         "59": ["R", "Send enabled currency codes"],
         "5A": ["S", "Send supported bills"],
@@ -106,7 +113,7 @@ class LPrealtime:
         "86": ["S/G", "Receive multiple progressive levels"],
         "87": ["R", "Send multiple SAS progressive win amounts"],
         "8A": ["S", "Initiate a legacy bonus pay"],
-        "8B": ["S", "Initiate multiplied jackpot mode"],
+        "8B": ["S", "Initiate multiplied jackpot mode (obsolete)"],
         "8C": ["M", "Enter/exit tournament mode"],
         "8E": ["R", "Send card information"],
         "8F": ["R", "Send physical reel stop information"],
@@ -120,7 +127,7 @@ class LPrealtime:
         "9A": ["M", "Send legacy bonus meters"],
         "A0": ["M", "Send enabled features"],
         "A4": ["M", "Send cash out limit"],
-        "A8": ["S", "Enable jackpot handpay reset"],
+        "A8": ["S", "Enable jackpot handpay reset method"],
         "AA": ["S", "Enable/disable game auto rebet"],
         "AF": ["M", "Send extended meters for game n (alternate)"],
         "B0": ["S", "Multi-denom preamble"],
@@ -133,59 +140,27 @@ class LPrealtime:
         "B7": ["S", "Set machine numbers"],
         "EB": ["", "Reserved"],
         "FF": ["S", "Event response to long poll"],
-       
     }
 
-    
     @classmethod
     def get_polltype(cls, key):
-        """Get the status value for the given key.
-
-        Args:
-            key (str): The key for the status.
-
-        Returns:
-            str: The first piece of the corresponding status value or an error message if the key is not found.
-        """
-        # Directly retrieve the value or a default error message.
+        """Get the status value for the given key."""
         status_value = cls.STATUS_MAP.get(key, [f"Unknown key: {key}", "N/A"])
-
-        # Assuming status_value could be a list or a dict, you handle it accordingly.
-        # For simplification, if it's a list, return the first element (description or error message).
         if isinstance(status_value, list):
             return status_value[0]
-        elif isinstance(status_value, dict):
-            # If it's a dict and you expect certain keys, adjust accordingly.
-            # Example: return status_value["description"]
+        if isinstance(status_value, dict):
             return status_value  # Adjust based on your dict structure.
-        else:
-            # Fallback in case it's neither (for robustness, though it shouldn't happen with the given setup)
-            return "Invalid status data"
-    
+        return "Invalid status data"
+
     @classmethod
     def get_event(cls, key):
-        """Get the status value for the given key.
-
-        Args:
-            key (str): The key for the status.
-
-        Returns:
-            str: The first piece of the corresponding status value or an error message if the key is not found.
-        """
-        # Directly retrieve the value or a default error message.
+        """Get the status value for the given key."""
         status_value = cls.STATUS_MAP.get(key, [f"Unknown key: {key}", "N/A"])
-
-        # Assuming status_value could be a list or a dict, you handle it accordingly.
-        # For simplification, if it's a list, return the first element (description or error message).
         if isinstance(status_value, list):
             return status_value[1]
-        elif isinstance(status_value, dict):
-            # If it's a dict and you expect certain keys, adjust accordingly.
-            # Example: return status_value["description"]
+        if isinstance(status_value, dict):
             return status_value  # Adjust based on your dict structure.
-        else:
-            # Fallback in case it's neither (for robustness, though it shouldn't happen with the given setup)
-            return "Invalid status data"
+        return "Invalid status data"
 
 
 

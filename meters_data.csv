@@ -1,2 +1,4 @@
 total_cancelled_credits,total_in,total_out,total_droup,total_jackpot,games_played,datetime_poll,location_id,operator_id,sas_addess,meter_id
 12.0,33.0,12.0,33.0,,29,2024-03-30 17:24:55,1,56,12,8ab0b234-73db-4914-9afd-59774e02c0a0
+12.0,33.0,12.0,33.0,29,2024-03-30 17:50:57,1,56,12
+12.0,33.0,12.0,33.0,29,2024-03-30 17:51:59,1,56,12,4bae7cc8-4420-43ce-a372-7a123b32a9e1

@@ -17,8 +17,8 @@ def validate_data(data):
     """
     required_fields = [
         "meter_id", "machine_id", "datetime_poll",
-        "total_cancelled_credits", "total_in", "total_out", "total_drop",
-        "total_jackpot", "games_played"
+        "total_cancelled_credits_meter", "total_in_meter", "total_out_meter", 
+        "total_drop_meter", "games_played_meter"
     ]
 
     missing_or_invalid_fields = []
@@ -45,19 +45,27 @@ def validate_data(data):
         return False
     return True
 
+
 logging.info("Starting the script.")
 
 # Load SQL configuration
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-db_config = config['database']
+db_config = config['dev_monitoring_database']
+
+# Create the connection string
 conn_str = (
     f"DRIVER={{{db_config['driver']}}};"
     f"SERVER={db_config['server']};"
+    f"PORT={db_config.get('port', '1433')};"
     f"DATABASE={db_config['database']};"
     f"UID={db_config['username']};"
-    f"PWD={db_config['password']}"
+    f"PWD={db_config['password']};"
+    f"TDS_Version={db_config['tds_version']};"
+    f"Encrypt={db_config.get('encrypt', 'yes')};"
+    f"TrustServerCertificate={db_config.get('trustservercertificate', 'no')};"
+    f"Connection Timeout=30;"
 )
 
 # Initialize SAS connection
@@ -133,4 +141,5 @@ else:
             connection.close()
 
 logging.info("Script execution completed.")
+
 

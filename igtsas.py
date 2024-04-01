@@ -562,7 +562,7 @@ class Sas:
                 Meters.Meters.STATUS_MAP["total_out_meter"] = round(
                     int(binascii.hexlify(bytearray(data[9:13]))) * self.denom, 2
                 )
-                Meters.Meters.STATUS_MAP["total_droup_meter"] = round(
+                Meters.Meters.STATUS_MAP["total_drop_meter"] = round(
                     int(binascii.hexlify(bytearray(data[13:17]))) * self.denom, 2
                 )
                 Meters.Meters.STATUS_MAP["total_jackpot_meter"] = round(

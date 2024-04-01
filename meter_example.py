@@ -10,6 +10,22 @@ from config_handler import configHandler
 logging.basicConfig(filename='meterpoll.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
+def validate_data(data):
+    """
+    Validates that required fields are not None or empty.
+    Logs missing or null fields and returns False if any are found.
+    """
+    required_fields = [
+        "meter_id", "machine_id", "datetime_poll",
+        "total_cancelled_credits", "total_in", "total_out", "total_drop", "games_played"
+    ]
+    missing_or_null_fields = [field for field in required_fields if data.get(field) is None]
+
+    if missing_or_null_fields:
+        logging.warning(f"Validation failed. Missing or null fields: {', '.join(missing_or_null_fields)}")
+        return False
+    return True
+
 logging.info("Starting the script.")
 
 # Load SQL configuration
@@ -58,40 +74,44 @@ response_data.update({
     "meter_id": str(uuid.uuid4())
 })
 
-# Establish database connection
-try:
-    connection = pyodbc.connect(conn_str)
-    cursor = connection.cursor()
-    logging.info("Database connection established.")
+# Validate data before insertion
 
-    # Prepare and execute the SQL INSERT INTO statement
-    insert_stmt = """\
-    INSERT INTO dbo.machine_meters_poll
-    (meter_id, machine_id, datetime_poll, total_cancelled_credits, total_in, total_out, total_drop, total_jackpot, games_played)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """
-    # Prepare the values to insert
-    values = (
-        response_data["meter_id"],
-        response_data["machine_id"],  
-        response_data["datetime_poll"],
-        response_data.get("total_cancelled_credits_meter", 0),
-        response_data.get("total_in_meter", 0),
-        response_data.get("total_out_meter", 0),
-        response_data.get("total_drop_meter", 0),
-        response_data.get("total_jackpot_meter", 0),
-        response_data.get("games_played_meter", 0)
-    )
-    cursor.execute(insert_stmt, values)
-    connection.commit()
-    logging.info("Data successfully inserted into the database.")
-except Exception as e:
-    logging.error(f"An error occurred: {e}")
-finally:
-    if 'cursor' in locals():
-        cursor.close()
-    if 'connection' in locals():
-        connection.close()
+if not validate_data(response_data):
+    logging.error("Data validation failed. Skipping database insertion")
+else:
+    try:
+        connection = pyodbc.connect(conn_str)
+        cursor = connection.cursor()
+        logging.info("Database connection established.")
+
+        # Prepare and execute the SQL INSERT INTO statement
+        insert_stmt = """\
+        INSERT INTO dbo.machine_meters_poll
+        (meter_id, machine_id, datetime_poll, total_cancelled_credits, total_in, total_out, total_drop, total_jackpot, games_played)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """
+        # Prepare the values to insert
+        values = (
+            response_data["meter_id"],
+            response_data["machine_id"],  
+            response_data["datetime_poll"],
+            response_data.get("total_cancelled_credits_meter", 0),
+            response_data.get("total_in_meter", 0),
+            response_data.get("total_out_meter", 0),
+            response_data.get("total_drop_meter", 0),
+            response_data.get("total_jackpot_meter", 0),
+            response_data.get("games_played_meter", 0)
+        )
+        cursor.execute(insert_stmt, values)
+        connection.commit()
+        logging.info("Data successfully inserted into the database.")
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'connection' in locals():
+            connection.close()
 
 logging.info("Script execution completed.")
 

@@ -68,3 +68,14 @@
 2024-04-01 16:38:45,666 - INFO - Database connection established.
 2024-04-01 16:38:45,745 - INFO - Data successfully inserted into the database.
 2024-04-01 16:38:45,796 - INFO - Script execution completed.
+2024-04-01 18:02:24,416 - INFO - Starting the script.
+2024-04-01 18:02:24,430 - INFO - SAS connection initialized.
+2024-04-01 18:02:24,755 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 43.0, 'total_out_meter': 17.0, 'games_played_meter': 39, 'total_drop_meter': 43.0}
+2024-04-01 18:02:40,756 - ERROR - An error occurred: ('42000', "[42000] [FreeTDS][SQL Server]Database 'Dev-EGM-Monitoring-PA' on server 'devmonitoringeast' is not currently available.  Please retry the connection later.  If the problem persists, contact customer support, and provide them the session tracing ID of '{FB3E1258-50F2-42F7-AE2A-3D9DB007C0B8}'. (40613) (SQLDriverConnect)")
+2024-04-01 18:02:40,758 - INFO - Script execution completed.
+2024-04-01 18:10:04,839 - INFO - Starting the script.
+2024-04-01 18:10:04,853 - INFO - SAS connection initialized.
+2024-04-01 18:10:05,184 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 43.0, 'total_out_meter': 17.0, 'games_played_meter': 39, 'total_drop_meter': 43.0}
+2024-04-01 18:10:05,975 - INFO - Database connection established.
+2024-04-01 18:10:06,029 - INFO - Data successfully inserted into the database.
+2024-04-01 18:10:06,077 - INFO - Script execution completed.

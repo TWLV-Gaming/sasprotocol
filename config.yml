@@ -44,10 +44,4 @@ machine:
     denomination: 0.01
     # Specifies a denomination value, possibly relating to financial transactions or units of measurement managed by the machine or software.
     machine_id: 1
-    manufacturer: "Jenka Lab"
-    board: "Aurora Classic"
-    operator_id: 56
-    smib: "RaspberryPi5"
-    smib_hostname: "raspberrypi"
-    location_id: 1
     

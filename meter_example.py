@@ -12,17 +12,36 @@ logging.basicConfig(filename='meterpoll.log', level=logging.DEBUG,
 
 def validate_data(data):
     """
-    Validates that required fields are not None or empty.
-    Logs missing or null fields and returns False if any are found.
+    Validates that required fields are not None or empty (if string).
+    Logs detailed information about missing or null/empty fields and returns False if any are found.
     """
     required_fields = [
         "meter_id", "machine_id", "datetime_poll",
-        "total_cancelled_credits", "total_in", "total_out", "total_drop", "games_played"
+        "total_cancelled_credits", "total_in", "total_out", "total_drop",
+        "total_jackpot", "games_played"
     ]
-    missing_or_null_fields = [field for field in required_fields if data.get(field) is None]
 
-    if missing_or_null_fields:
-        logging.warning(f"Validation failed. Missing or null fields: {', '.join(missing_or_null_fields)}")
+    missing_or_invalid_fields = []
+
+    for field in required_fields:
+        # Check if the field is missing
+        if field not in data:
+            missing_or_invalid_fields.append(f"{field} (missing)")
+            continue
+
+        value = data[field]
+        
+        # Special handling for string fields to check for empty strings
+        if isinstance(value, str) and not value.strip():
+            missing_or_invalid_fields.append(f"{field} (empty string)")
+            continue
+        
+        # Check for None values
+        if value is None:
+            missing_or_invalid_fields.append(f"{field} (null)")
+    
+    if missing_or_invalid_fields:
+        logging.warning(f"Validation failed. Missing or null/empty fields: {', '.join(missing_or_invalid_fields)}")
         return False
     return True
 

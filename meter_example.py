@@ -3,6 +3,7 @@ import uuid
 import pyodbc
 import configparser
 import logging
+import time
 from igtsas import Sas
 from config_handler import configHandler
 
@@ -68,6 +69,9 @@ conn_str = (
     f"Connection Timeout=30;"
 )
 
+# Define maxium number of connection attempts
+max_attempts = 3
+
 # Initialize SAS connection
 config_handler = configHandler()
 config_handler.read_config_file()
@@ -87,8 +91,8 @@ sas = Sas(
 
 logging.info("SAS connection initialized.")
 
-# Start the connection and capture the machine address
-machine_n_hex = sas.start()
+# Start the connection
+sas.start()
 
 # Send Poll Meters 10-15
 response_data = sas.send_meters_10_15()
@@ -106,11 +110,23 @@ response_data.update({
 if not validate_data(response_data):
     logging.error("Data validation failed. Skipping database insertion")
 else:
-    try:
-        connection = pyodbc.connect(conn_str)
-        cursor = connection.cursor()
-        logging.info("Database connection established.")
+    # Attempt database connection with retry logic
+    for attempt in range(1, max_attempts + 1):
+        try:
+            connection = pyodbc.connect(conn_str)
+            cursor = connection.cursor()
+            logging.info("Database connection established.")
+            break  # Exit loop if connection succeeds
+        except pyodbc.Error as e:
+            logging.error(f"Database connection attempt {attempt} failed: {e}")
+            if attempt < max_attempts:
+                logging.info("Retrying database connection after a delay...")
+                time.sleep(5)  # Wait for 5 seconds before retrying
+            else:
+                logging.error("Maximum number of connection attempts reached. Exiting script.")
+                exit()
 
+    try:
         # Prepare and execute the SQL INSERT INTO statement
         insert_stmt = """\
         INSERT INTO dbo.machine_meters_poll

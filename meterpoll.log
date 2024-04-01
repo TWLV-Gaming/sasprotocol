@@ -1,0 +1,70 @@
+2024-04-01 12:13:19,746 - INFO - Starting the script.
+2024-04-01 12:13:19,762 - INFO - SAS connection initialized.
+2024-04-01 12:13:19,981 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_droup_meter': 33.0}
+2024-04-01 12:13:19,981 - WARNING - Validation failed. Missing or null fields: machine_id, total_cancelled_credits, total_in, total_out, total_drop, games_played
+2024-04-01 12:13:19,981 - ERROR - Data validation failed. Skipping database insertion
+2024-04-01 12:13:19,981 - INFO - Script execution completed.
+2024-04-01 12:13:57,178 - INFO - Starting the script.
+2024-04-01 12:13:57,187 - INFO - SAS connection initialized.
+2024-04-01 12:13:57,488 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_droup_meter': 33.0}
+2024-04-01 12:13:57,488 - WARNING - Validation failed. Missing or null fields: total_cancelled_credits, total_in, total_out, total_drop, games_played
+2024-04-01 12:13:57,488 - ERROR - Data validation failed. Skipping database insertion
+2024-04-01 12:13:57,488 - INFO - Script execution completed.
+2024-04-01 12:20:33,489 - INFO - Starting the script.
+2024-04-01 12:20:33,501 - INFO - SAS connection initialized.
+2024-04-01 12:20:33,781 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_droup_meter': 33.0}
+2024-04-01 12:20:33,782 - WARNING - Validation failed. Missing or null/empty fields: total_cancelled_credits (missing), total_in (missing), total_out (missing), total_drop (missing), total_jackpot (missing), games_played (missing)
+2024-04-01 12:20:33,782 - ERROR - Data validation failed. Skipping database insertion
+2024-04-01 12:20:33,782 - INFO - Script execution completed.
+2024-04-01 12:23:52,869 - INFO - Starting the script.
+2024-04-01 12:23:52,880 - INFO - SAS connection initialized.
+2024-04-01 12:23:53,136 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_droup_meter': 33.0}
+2024-04-01 12:23:53,137 - WARNING - Validation failed. Missing or null/empty fields: total_drop_meter (missing), total_jackpot_meter (missing)
+2024-04-01 12:23:53,137 - ERROR - Data validation failed. Skipping database insertion
+2024-04-01 12:23:53,137 - INFO - Script execution completed.
+2024-04-01 12:26:22,098 - INFO - Starting the script.
+2024-04-01 12:26:22,107 - INFO - SAS connection initialized.
+2024-04-01 12:26:22,457 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 12:26:22,459 - ERROR - An error occurred: ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib 'SQL Server' : file not found (0) (SQLDriverConnect)")
+2024-04-01 12:26:22,460 - INFO - Script execution completed.
+2024-04-01 12:35:53,556 - INFO - Starting the script.
+2024-04-01 12:35:53,567 - INFO - SAS connection initialized.
+2024-04-01 12:35:53,787 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 12:35:53,789 - ERROR - An error occurred: ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib 'ODBC Driver 17 for SQL Server' : file not found (0) (SQLDriverConnect)")
+2024-04-01 12:35:53,789 - INFO - Script execution completed.
+2024-04-01 12:49:37,201 - INFO - Starting the script.
+2024-04-01 12:49:37,212 - INFO - SAS connection initialized.
+2024-04-01 12:49:37,393 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 12:49:37,444 - ERROR - An error occurred: ('08S01', '[08S01] [FreeTDS][SQL Server]Unable to connect: Adaptive Server is unavailable or does not exist (20009) (SQLDriverConnect)')
+2024-04-01 12:49:37,445 - INFO - Script execution completed.
+2024-04-01 15:08:44,684 - INFO - Starting the script.
+2024-04-01 15:08:44,694 - INFO - SAS connection initialized.
+2024-04-01 15:09:30,569 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 15:09:30,654 - ERROR - An error occurred: ('08S01', '[08S01] [FreeTDS][SQL Server]Unable to connect: Adaptive Server is unavailable or does not exist (20009) (SQLDriverConnect)')
+2024-04-01 15:09:30,654 - INFO - Script execution completed.
+2024-04-01 15:11:50,501 - INFO - Starting the script.
+2024-04-01 15:11:50,509 - INFO - SAS connection initialized.
+2024-04-01 15:11:50,764 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 15:11:50,808 - ERROR - An error occurred: ('08S01', '[08S01] [FreeTDS][SQL Server]Unable to connect: Adaptive Server is unavailable or does not exist (20009) (SQLDriverConnect)')
+2024-04-01 15:11:50,809 - INFO - Script execution completed.
+2024-04-01 15:16:15,861 - INFO - Starting the script.
+2024-04-01 15:16:15,870 - INFO - SAS connection initialized.
+2024-04-01 15:16:16,172 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 15:16:16,256 - ERROR - An error occurred: ('08S01', '[08S01] [FreeTDS][SQL Server]Unable to connect: Adaptive Server is unavailable or does not exist (20009) (SQLDriverConnect)')
+2024-04-01 15:16:16,256 - INFO - Script execution completed.
+2024-04-01 15:23:09,144 - INFO - Starting the script.
+2024-04-01 15:23:09,154 - INFO - SAS connection initialized.
+2024-04-01 15:23:09,479 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 15:23:09,484 - ERROR - An error occurred: ('08001', '[08001] [FreeTDS][SQL Server]Unable to connect to data source (0) (SQLDriverConnect)')
+2024-04-01 15:23:09,484 - INFO - Script execution completed.
+2024-04-01 15:52:20,712 - INFO - Starting the script.
+2024-04-01 15:52:20,724 - INFO - SAS connection initialized.
+2024-04-01 15:52:20,968 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 15:52:20,972 - ERROR - An error occurred: ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib '/usr/lib/arm-linux-gnueabi/odbc/libtdsodbc.so' : file not found (0) (SQLDriverConnect)")
+2024-04-01 15:52:20,972 - INFO - Script execution completed.
+2024-04-01 16:38:44,708 - INFO - Starting the script.
+2024-04-01 16:38:44,719 - INFO - SAS connection initialized.
+2024-04-01 16:38:45,084 - DEBUG - Response Data: {'total_cancelled_credits_meter': 12.0, 'total_in_meter': 33.0, 'total_out_meter': 12.0, 'games_played_meter': 29, 'total_drop_meter': 33.0}
+2024-04-01 16:38:45,666 - INFO - Database connection established.
+2024-04-01 16:38:45,745 - INFO - Data successfully inserted into the database.
+2024-04-01 16:38:45,796 - INFO - Script execution completed.

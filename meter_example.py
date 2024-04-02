@@ -133,7 +133,7 @@ else:
         insert_stmt = """\
         INSERT INTO dbo.machine_meters_poll
         (meter_id, machine_id, location_id, operator_id, datetime_poll, total_cancelled_credits, total_in, total_out, total_drop, total_jackpot, games_played)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         # Prepare the values to insert
         values = (

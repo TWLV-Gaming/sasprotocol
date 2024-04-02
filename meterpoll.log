@@ -79,3 +79,54 @@
 2024-04-01 18:10:05,975 - INFO - Database connection established.
 2024-04-01 18:10:06,029 - INFO - Data successfully inserted into the database.
 2024-04-01 18:10:06,077 - INFO - Script execution completed.
+2024-04-01 18:26:40,404 - INFO - Starting the script.
+2024-04-01 18:26:40,421 - INFO - SAS connection initialized.
+2024-04-01 18:26:40,783 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 46.0, 'total_out_meter': 17.0, 'games_played_meter': 42, 'total_drop_meter': 46.0}
+2024-04-01 18:26:41,536 - INFO - Database connection established.
+2024-04-01 18:26:41,630 - INFO - Data successfully inserted into the database.
+2024-04-01 18:26:41,681 - INFO - Script execution completed.
+2024-04-02 11:29:57,740 - INFO - Starting the script.
+2024-04-02 11:29:57,748 - INFO - SAS connection initialized.
+2024-04-02 11:29:57,977 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 52.0, 'total_out_meter': 24.0, 'games_played_meter': 48, 'total_drop_meter': 66.0}
+2024-04-02 11:29:58,616 - INFO - Database connection established.
+2024-04-02 11:29:58,616 - ERROR - An error occurred: ('The SQL contains 9 parameter markers, but 11 parameters were supplied', 'HY000')
+2024-04-02 11:29:58,638 - INFO - Script execution completed.
+2024-04-02 11:30:20,474 - INFO - Starting the script.
+2024-04-02 11:30:20,489 - INFO - SAS connection initialized.
+2024-04-02 11:30:20,806 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 52.0, 'total_out_meter': 24.0, 'games_played_meter': 48, 'total_drop_meter': 66.0}
+2024-04-02 11:30:21,306 - INFO - Database connection established.
+2024-04-02 11:30:21,373 - INFO - Data successfully inserted into the database.
+2024-04-02 11:30:21,421 - INFO - Script execution completed.
+2024-04-02 11:30:50,214 - INFO - Starting the script.
+2024-04-02 11:30:50,224 - INFO - SAS connection initialized.
+2024-04-02 11:30:50,587 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 52.0, 'total_out_meter': 24.0, 'games_played_meter': 48, 'total_drop_meter': 66.0}
+2024-04-02 11:30:51,120 - INFO - Database connection established.
+2024-04-02 11:30:51,183 - INFO - Data successfully inserted into the database.
+2024-04-02 11:30:51,226 - INFO - Script execution completed.
+2024-04-02 11:31:25,140 - INFO - Starting the script.
+2024-04-02 11:31:25,151 - INFO - SAS connection initialized.
+2024-04-02 11:31:25,492 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 55.0, 'total_out_meter': 25.0, 'games_played_meter': 51, 'total_drop_meter': 66.0}
+2024-04-02 11:31:26,305 - INFO - Database connection established.
+2024-04-02 11:31:26,357 - INFO - Data successfully inserted into the database.
+2024-04-02 11:31:26,402 - INFO - Script execution completed.
+2024-04-02 11:32:09,139 - INFO - Starting the script.
+2024-04-02 11:32:09,149 - INFO - SAS connection initialized.
+2024-04-02 11:32:11,321 - DEBUG - Response Data: None
+2024-04-02 11:32:25,355 - INFO - Starting the script.
+2024-04-02 11:32:25,367 - INFO - SAS connection initialized.
+2024-04-02 11:32:25,542 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 61.0, 'total_out_meter': 29.0, 'games_played_meter': 54, 'total_drop_meter': 66.0}
+2024-04-02 11:32:26,069 - INFO - Database connection established.
+2024-04-02 11:32:26,117 - INFO - Data successfully inserted into the database.
+2024-04-02 11:32:26,163 - INFO - Script execution completed.
+2024-04-02 11:32:58,604 - INFO - Starting the script.
+2024-04-02 11:32:58,617 - INFO - SAS connection initialized.
+2024-04-02 11:32:58,998 - DEBUG - Response Data: {'total_cancelled_credits_meter': 17.0, 'total_in_meter': 64.0, 'total_out_meter': 29.0, 'games_played_meter': 57, 'total_drop_meter': 66.0}
+2024-04-02 11:32:59,479 - INFO - Database connection established.
+2024-04-02 11:32:59,523 - INFO - Data successfully inserted into the database.
+2024-04-02 11:32:59,564 - INFO - Script execution completed.
+2024-04-02 11:33:39,922 - INFO - Starting the script.
+2024-04-02 11:33:39,933 - INFO - SAS connection initialized.
+2024-04-02 11:33:40,109 - DEBUG - Response Data: {'total_cancelled_credits_meter': 29.0, 'total_in_meter': 66.0, 'total_out_meter': 29.0, 'games_played_meter': 58, 'total_drop_meter': 66.0}
+2024-04-02 11:33:40,632 - INFO - Database connection established.
+2024-04-02 11:33:40,684 - INFO - Data successfully inserted into the database.
+2024-04-02 11:33:40,726 - INFO - Script execution completed.

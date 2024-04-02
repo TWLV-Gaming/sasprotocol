@@ -44,6 +44,6 @@ machine:
     denomination: 0.01
     # Specifies a denomination value, possibly relating to financial transactions or units of measurement managed by the machine or software.
     machine_id: 1
-    locaiton_id: 1
+    location_id: 1
     operator_id: 1
     

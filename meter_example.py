@@ -102,6 +102,8 @@ logging.debug(f"Response Data: {response_data}")
 response_data.update({
     "datetime_poll": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     "machine_id": config_handler.get_config_value("machine","machine_id"),
+    "location_id": config_handler.get_config_value("machine","location_id"),
+    "operator_id": config_handler.get_config_value("machine","operator_id"),
     "meter_id": str(uuid.uuid4())
 })
 
@@ -130,13 +132,15 @@ else:
         # Prepare and execute the SQL INSERT INTO statement
         insert_stmt = """\
         INSERT INTO dbo.machine_meters_poll
-        (meter_id, machine_id, datetime_poll, total_cancelled_credits, total_in, total_out, total_drop, total_jackpot, games_played)
+        (meter_id, machine_id, location_id, operator_id, datetime_poll, total_cancelled_credits, total_in, total_out, total_drop, total_jackpot, games_played)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         # Prepare the values to insert
         values = (
             response_data["meter_id"],
-            response_data["machine_id"],  
+            response_data["machine_id"],
+            response_data["location_id"],
+            response_data["operator_id"],  
             response_data["datetime_poll"],
             response_data.get("total_cancelled_credits_meter", 0),
             response_data.get("total_in_meter", 0),

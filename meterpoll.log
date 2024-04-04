@@ -351,3 +351,35 @@
 2024-04-04 12:21:08,602 - INFO - Database connection established.
 2024-04-04 12:21:08,673 - INFO - Data successfully inserted into the database.
 2024-04-04 12:21:08,717 - INFO - Script execution completed.
+2024-04-04 13:25:46,081 - INFO - Starting the script.
+2024-04-04 13:25:46,092 - INFO - SAS connection initialized.
+2024-04-04 13:25:46,359 - DEBUG - Response Data: {'total_cancelled_credits_meter': 46.0, 'total_in_meter': 229.5, 'total_out_meter': 70.5, 'games_played_meter': 165, 'total_drop_meter': 205.0}
+2024-04-04 13:25:47,013 - INFO - Database connection established.
+2024-04-04 13:25:47,311 - INFO - Data successfully inserted into the database.
+2024-04-04 13:25:47,358 - INFO - Script execution completed.
+2024-04-04 13:45:21,380 - INFO - Starting the script.
+2024-04-04 13:45:21,394 - INFO - SAS connection initialized.
+2024-04-04 13:45:21,618 - DEBUG - Response Data: {'total_cancelled_credits_meter': 46.0, 'total_in_meter': 239.5, 'total_out_meter': 76.5, 'games_played_meter': 170, 'total_drop_meter': 209.0}
+2024-04-04 13:45:22,268 - INFO - Database connection established.
+2024-04-04 13:45:22,329 - INFO - Data successfully inserted into the database.
+2024-04-04 13:45:22,374 - INFO - Script execution completed.
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 56, in <module>
+    db_config = config['master_monitoring_database']
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/configparser.py", line 979, in __getitem__
+    raise KeyError(key)
+KeyError: 'master_monitoring_database'
+2024-04-04 14:08:09,946 - INFO - Starting the script.
+2024-04-04 14:08:09,957 - INFO - SAS connection initialized.
+2024-04-04 14:08:10,284 - DEBUG - Response Data: {'total_cancelled_credits_meter': 46.0, 'total_in_meter': 241.5, 'total_out_meter': 76.5, 'games_played_meter': 171, 'total_drop_meter': 211.0}
+2024-04-04 14:08:10,955 - INFO - Database connection established.
+2024-04-04 14:08:11,012 - INFO - Data successfully inserted into the database.
+2024-04-04 14:08:11,060 - INFO - Script execution completed.
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 56, in <module>
+    db_config = config['master_monitoring_database']
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/configparser.py", line 979, in __getitem__
+    raise KeyError(key)
+KeyError: 'master_monitoring_database'

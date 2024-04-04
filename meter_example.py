@@ -53,7 +53,7 @@ logging.info("Starting the script.")
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-db_config = config['dev_monitoring_database']
+db_config = config['master_monitoring_database']
 
 # Create the connection string
 conn_str = (

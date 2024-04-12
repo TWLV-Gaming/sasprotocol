@@ -95,47 +95,56 @@ class Sas:
         except Exception as e:
             self.log.error(e,exc_info=True)
 
-    def start(self):
-        """Fire up the connection to the EGM
+    def start(self, max_retries=5, backoff_factor=2):
+        """Fire up the connection to the EGM with retries and backoff.
+    
         Initializes and establishes a connection with the Electronic Gaming Machine (EGM) via the serial port.
         This method attempts to open the serial port if it's not already open and then listens for an initial response
-        from the EGM to confirm the connection. It tries repeatedly to connect until a response is received. Once a
-        response is received, it logs the recognized address of the EGM, closes the connection, and returns the machine's
-        numeric address. If the connection cannot be opened or no response is received, it logs appropriate errors.
-
+        from the EGM to confirm the connection. It retries several times to connect until a response is received.
+        Once a response is received, it logs the recognized address of the EGM, closes the connection, and returns the
+        machine's numeric address. If the connection cannot be opened or no response is received, it logs appropriate errors.
+    
+        Args:
+            max_retries (int): Maximum number of retries before giving up.
+            backoff_factor (int): Factor by which the wait time increases after each retry.
+    
         Returns:
-            machine_n (str): The hexadecimal address of the EGM once the connection is successfully established and recognized."""
-
+            machine_n (str): The hexadecimal address of the EGM once the connection is successfully established and recognized.
+        """
         self.log.info("Connecting to the Machine...")
-        while True:
+        retry_count = 0
+    
+        while retry_count < max_retries:
             if not self.is_open():
                 try:
                     self.open()
                     if not self.is_open():
-                        self.log.error("Port is NOT open")
-                except SASOpenError:
-                    self.log.critical("No SAS Port")
+                        raise SASOpenError("Failed to open port on attempt.")
+                except SASOpenError as e:
+                    self.log.error("Port is NOT open: " + str(e))
+                    time.sleep(backoff_factor ** retry_count)  # Exponential backoff
+                    retry_count += 1
+                    continue
                 except Exception as e:
-                    self.log.critical(e, exc_info=True)
+                    self.log.critical("Unexpected error when opening port: ", exc_info=True)
+                    break
             else:
                 self.connection.reset_output_buffer()
                 self.connection.reset_input_buffer()
                 response = self.connection.read(1)
-
-                if not response:
-                    self.log.error("No SAS connection")
-                    time.sleep(1)
-
+    
                 if response != b"":
-                    self.address = int(binascii.hexlify(response),16)
+                    self.address = int(binascii.hexlify(response), 16)
                     self.machine_n = response.hex()
-                    self.log.info("Address Recognized " + str(self.address))
-                    break
+                    self.log.info("Address Recognized: " + str(self.address))
+                    return self.machine_n
                 else:
-                    self.log.error("No SAS Connection")
-                    time.sleep(1)
-        self.close()
-        return self.machine_n
+                    self.log.error("No SAS Connection, retrying...")
+                    time.sleep(backoff_factor ** retry_count)
+                    retry_count += 1
+    
+        self.log.error("Maximum retries reached. Unable to establish a connection.")
+        return "Error: Device unreachable"
     
     def close(self):
         """Close the connection to the serial Port"""
@@ -301,45 +310,6 @@ class Sas:
     
         raise NoSasConnection("Maximum retries reached. Device may be off or unresponsive.", error_code=408)
    
-    # def events_poll(self):
-    #     """Events Poll Function
-        
-    #     Polls for an event from the connected device and processes the received data.
-
-    #     This method configures the event port, constructs a command using the device's
-    #     address, and sends a polling request to the device. It attempts to read the
-    #     event response from the device. If no response is received, a NoSasConnection
-    #     exception is raised. If a response is received, the method decodes the event status.
-    
-    #     If the event status is unknown (KeyError), an EMGGpollBadResponse exception is raised.
-    #     For any other exceptions, the exception is re-raised without handling.
-
-    #     The method then checks if the new event differs from the last known event. If it does,
-    #     the last_gpoll_event is updated with the new event. If the new event is the same as the
-    #     last known event, the event is set to 'No Activity'.
-
-    #     Returns:
-    #         str: The current event status, which can be a new event, 'No Activity', or an error indicator."""
-
-    #     self._conf_event_port()
-    #     cmd = [0x80 + self.address]
-    #     # self.connection.write([self.poll_address])
-    #     while retry_count < max_retries:
-    #     try:
-    #         self.connection.write(cmd)
-    #         event = self.connection.read(1)
-    #         if event == "":
-    #             raise NoSasConnection
-    #         event = GPoll.GPoll.get_status(event.hex())
-    #     except KeyError as e:
-    #         raise EMGGpollBadResponse
-    #     except Exception as e:
-    #         raise e
-    #     if self.last_gpoll_event != event:
-    #         self.last_gpoll_event = event
-    #     else:
-    #         event = 'No Activity'
-    #     return event
 
     def shutdown(self):
         """Make the EGM Unplayable"""

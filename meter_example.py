@@ -8,7 +8,7 @@ from igtsas import Sas
 from config_handler import configHandler
 
 # Setup logging
-logging.basicConfig(filename='meterpoll.log', level=logging.DEBUG,
+logging.basicConfig(filename='/home/hercules/TWLVGaming/sasprotocol/meterpoll.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def validate_data(data):
@@ -49,9 +49,13 @@ def validate_data(data):
 
 logging.info("Starting the script.")
 
+# Specify the full path to the config.ini file
+CONFIG_FILE_PATH = '/home/hercules/TWLVGaming/sasprotocol/config.ini'
+
+
 # Load SQL configuration
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read(CONFIG_FILE_PATH)
 
 db_config = config['master_monitoring_database']
 

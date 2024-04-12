@@ -8259,3 +8259,91 @@ Accessing machine -> operator_id: 1
 2024-04-11 20:32:01,770 - INFO - Database connection established.
 2024-04-11 20:32:01,814 - INFO - Data successfully inserted into the database.
 2024-04-11 20:32:01,879 - INFO - Script execution completed.
+2024-04-11 20:40:02,073 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-11 20:40:02,081 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000009895000086850000829000000000000000353'
+2024-04-11 20:40:02,405 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 989.5, 'total_out_meter': 868.5, 'games_played_meter': 353, 'total_drop_meter': 829.0}
+2024-04-11 20:40:03,055 - INFO - Database connection established.
+2024-04-11 20:40:03,138 - INFO - Data successfully inserted into the database.
+2024-04-11 20:40:03,183 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-11 20:44:38,666 - INFO - Starting the script.
+2024-04-11 20:44:38,676 - INFO - SAS connection initialized.
+2024-04-11 20:50:00,013 - INFO - Starting the script.
+2024-04-11 20:50:00,021 - INFO - SAS connection initialized.
+2024-04-11 20:50:43,039 - DEBUG - Response Data: None
+2024-04-11 21:00:01,454 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-11 21:00:01,462 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[ERROR/MainProcess] No SAS Connection, retrying...
+[ERROR/MainProcess] No SAS Connection, retrying...
+[ERROR/MainProcess] No SAS Connection, retrying...
+[ERROR/MainProcess] No SAS Connection, retrying...
+[ERROR/MainProcess] No SAS Connection, retrying...
+[ERROR/MainProcess] Maximum retries reached. Unable to establish a connection.
+[INFO/MainProcess] Configured port. Initial buffer header with address: [None]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [None, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address None
+[ERROR/MainProcess] 'NoneType' object cannot be interpreted as an integer
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 221, in _send_command
+    self.connection.write([self.poll_address, self.address])
+  File "/home/hercules/TWLVGaming/freshtest/lib/python3.11/site-packages/serial/serialposix.py", line 616, in write
+    d = to_bytes(data)
+        ^^^^^^^^^^^^^^
+  File "/home/hercules/TWLVGaming/freshtest/lib/python3.11/site-packages/serial/serialutil.py", line 68, in to_bytes
+    return bytes(bytearray(seq))
+                 ^^^^^^^^^^^^^^
+TypeError: 'NoneType' object cannot be interpreted as an integer
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-11 21:00:44,481 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers

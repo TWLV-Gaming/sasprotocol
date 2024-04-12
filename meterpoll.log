@@ -8347,3 +8347,782 @@ AttributeError: 'NoneType' object has no attribute 'update'
 [INFO/MainProcess] process shutting down
 [DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
 [DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 09:20:01,824 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 09:20:01,833 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 09:20:04,005 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 09:40:01,261 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 09:40:01,269 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 09:40:03,459 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 09:43:25,085 - INFO - Starting the script.
+2024-04-12 09:43:25,093 - INFO - SAS connection initialized.
+2024-04-12 09:43:27,221 - DEBUG - Response Data: None
+2024-04-12 09:43:49,333 - INFO - Starting the script.
+2024-04-12 09:43:49,344 - INFO - SAS connection initialized.
+2024-04-12 09:43:51,358 - DEBUG - Response Data: None
+2024-04-12 09:44:13,026 - INFO - Starting the script.
+2024-04-12 09:44:13,037 - INFO - SAS connection initialized.
+2024-04-12 09:44:15,095 - DEBUG - Response Data: None
+2024-04-12 09:50:21,608 - INFO - Starting the script.
+2024-04-12 09:50:21,619 - INFO - SAS connection initialized.
+2024-04-12 09:50:23,807 - DEBUG - Response Data: None
+2024-04-12 10:00:01,734 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 10:00:01,741 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 10:00:03,807 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 10:20:02,096 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 10:20:02,104 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 10:20:04,187 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 10:40:01,458 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 10:40:01,467 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 10:40:03,529 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 11:00:01,801 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 11:00:01,811 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 11:00:03,994 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 11:20:01,297 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 11:20:01,307 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 11:20:03,319 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 11:40:01,560 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 11:40:01,568 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 250, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 11:40:03,639 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 11:42:15,323 - INFO - Starting the script.
+2024-04-12 11:42:15,333 - INFO - SAS connection initialized.
+2024-04-12 11:42:17,440 - DEBUG - Response Data: None
+2024-04-12 11:47:13,842 - INFO - Starting the script.
+2024-04-12 11:47:13,854 - INFO - SAS connection initialized.
+2024-04-12 11:47:15,942 - DEBUG - Response Data: None
+2024-04-12 11:48:56,770 - INFO - Starting the script.
+2024-04-12 11:48:56,778 - INFO - SAS connection initialized.
+2024-04-12 11:49:24,208 - INFO - Starting the script.
+2024-04-12 11:49:24,214 - INFO - SAS connection initialized.
+2024-04-12 11:49:26,349 - DEBUG - Response Data: None
+2024-04-12 12:00:01,938 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 12:00:01,945 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the machine...
+[INFO/MainProcess] Address Recognized 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[CRITICAL/MainProcess] Received Empty Response
+[CRITICAL/MainProcess] invalid literal for int() with base 16: b''
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/igtsas.py", line 282, in _send_command
+    if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: b''
+2024-04-12 12:00:03,998 - DEBUG - Response Data: None
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 1, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Traceback (most recent call last):
+  File "/home/hercules/TWLVGaming/sasprotocol/meter_example.py", line 106, in <module>
+    response_data.update({
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'update'
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 12:13:45,062 - INFO - Starting the script.
+2024-04-12 12:13:45,073 - INFO - SAS connection initialized.
+2024-04-12 12:13:45,377 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 991.5, 'total_out_meter': 868.5, 'games_played_meter': 354, 'total_drop_meter': 831.0}
+2024-04-12 12:13:46,000 - INFO - Database connection established.
+2024-04-12 12:13:46,058 - INFO - Data successfully inserted into the database.
+2024-04-12 12:13:46,129 - INFO - Script execution completed.
+2024-04-12 12:15:37,810 - INFO - Starting the script.
+2024-04-12 12:15:37,820 - INFO - SAS connection initialized.
+2024-04-12 12:15:38,008 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 991.5, 'total_out_meter': 868.5, 'games_played_meter': 354, 'total_drop_meter': 831.0}
+2024-04-12 12:15:38,616 - INFO - Database connection established.
+2024-04-12 12:15:38,670 - INFO - Data successfully inserted into the database.
+2024-04-12 12:15:38,712 - INFO - Script execution completed.
+2024-04-12 12:20:01,321 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 12:20:01,328 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000009915000086850000831000000000000000354'
+2024-04-12 12:20:01,571 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 991.5, 'total_out_meter': 868.5, 'games_played_meter': 354, 'total_drop_meter': 831.0}
+2024-04-12 12:20:02,106 - INFO - Database connection established.
+2024-04-12 12:20:02,161 - INFO - Data successfully inserted into the database.
+2024-04-12 12:20:02,202 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 1, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 1
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 12:40:01,465 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 12:40:01,473 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000009915000086850000831000000000000000354'
+2024-04-12 12:40:01,675 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 991.5, 'total_out_meter': 868.5, 'games_played_meter': 354, 'total_drop_meter': 831.0}
+2024-04-12 12:40:02,304 - INFO - Database connection established.
+2024-04-12 12:40:02,354 - INFO - Data successfully inserted into the database.
+2024-04-12 12:40:02,398 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 1, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 1
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 12:41:25,826 - INFO - Starting the script.
+2024-04-12 12:41:25,840 - INFO - SAS connection initialized.
+2024-04-12 12:41:26,219 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 993.5, 'total_out_meter': 868.5, 'games_played_meter': 355, 'total_drop_meter': 833.0}
+2024-04-12 12:41:26,804 - INFO - Database connection established.
+2024-04-12 12:41:26,852 - INFO - Data successfully inserted into the database.
+2024-04-12 12:41:26,897 - INFO - Script execution completed.
+2024-04-12 13:00:01,675 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 13:00:01,683 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010035000086850000843000000000000000356'
+2024-04-12 13:00:01,931 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1003.5, 'total_out_meter': 868.5, 'games_played_meter': 356, 'total_drop_meter': 843.0}
+2024-04-12 13:00:02,516 - INFO - Database connection established.
+2024-04-12 13:00:02,579 - INFO - Data successfully inserted into the database.
+2024-04-12 13:00:02,633 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 13:20:01,921 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 13:20:01,928 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010035000086850000843000000000000000356'
+2024-04-12 13:20:02,239 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1003.5, 'total_out_meter': 868.5, 'games_played_meter': 356, 'total_drop_meter': 843.0}
+2024-04-12 13:20:02,838 - INFO - Database connection established.
+2024-04-12 13:20:02,885 - INFO - Data successfully inserted into the database.
+2024-04-12 13:20:02,929 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 13:40:01,206 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 13:40:01,215 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010035000086850000843000000000000000356'
+2024-04-12 13:40:01,508 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1003.5, 'total_out_meter': 868.5, 'games_played_meter': 356, 'total_drop_meter': 843.0}
+2024-04-12 13:40:02,085 - INFO - Database connection established.
+2024-04-12 13:40:02,141 - INFO - Data successfully inserted into the database.
+2024-04-12 13:40:02,200 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 14:00:01,474 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 14:00:01,482 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 14:00:01,853 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 14:00:02,476 - INFO - Database connection established.
+2024-04-12 14:00:02,527 - INFO - Data successfully inserted into the database.
+2024-04-12 14:00:02,579 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 14:20:01,863 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 14:20:01,871 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 14:20:02,130 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 14:20:02,687 - INFO - Database connection established.
+2024-04-12 14:20:02,734 - INFO - Data successfully inserted into the database.
+2024-04-12 14:20:02,787 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 14:40:02,070 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 14:40:02,080 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 14:40:02,440 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 14:40:03,157 - INFO - Database connection established.
+2024-04-12 14:40:03,227 - INFO - Data successfully inserted into the database.
+2024-04-12 14:40:03,292 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 15:00:01,562 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 15:00:01,573 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 15:00:01,746 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 15:00:02,352 - INFO - Database connection established.
+2024-04-12 15:00:02,409 - INFO - Data successfully inserted into the database.
+2024-04-12 15:00:02,451 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 15:20:01,748 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 15:20:01,759 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 15:20:02,007 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 15:20:02,691 - INFO - Database connection established.
+2024-04-12 15:20:02,734 - INFO - Data successfully inserted into the database.
+2024-04-12 15:20:02,783 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 15:40:02,065 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 15:40:02,072 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 15:40:02,370 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 15:40:03,024 - INFO - Database connection established.
+2024-04-12 15:40:03,091 - INFO - Data successfully inserted into the database.
+2024-04-12 15:40:03,138 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-04-12 16:00:01,449 - INFO - Starting the script.
+[INFO/MainProcess] Connection Successful
+2024-04-12 16:00:01,458 - INFO - SAS connection initialized.
+[INFO/MainProcess] Connecting to the Machine...
+[INFO/MainProcess] Address Recognized: 12
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12]
+[INFO/MainProcess] Configured port. Initial buffer header with address: [12, 15]
+[INFO/MainProcess] Writing to connection: poll address 130, Device address 12
+[INFO/MainProcess] Flushed the connection
+[INFO/MainProcess] Set connection parity to SPACE. Sleeping for 0.0 seconds.
+[INFO/MainProcess] Writing header to connection: [15]
+[INFO/MainProcess] Header written to connection
+[DEBUG/MainProcess] sas response b'0f000708000010935000092850000873000000000000000365'
+2024-04-12 16:00:01,800 - DEBUG - Response Data: {'total_cancelled_credits_meter': 708.0, 'total_in_meter': 1093.5, 'total_out_meter': 928.5, 'games_played_meter': 365, 'total_drop_meter': 873.0}
+2024-04-12 16:00:02,390 - INFO - Database connection established.
+2024-04-12 16:00:02,487 - INFO - Data successfully inserted into the database.
+2024-04-12 16:00:02,553 - INFO - Script execution completed.
+Config Loaded: {'connection': {'serial_port': '/dev/ttyUSB0', 'timeout': 2, 'baudrate': 19200, 'infinite': False}, 'events': {'poll_timeout': 0.5, 'poll_address': 130}, 'debug': {'level': 'DEBUG'}, 'security': {'key': 44}, 'machine': {'pos_id': 'B374A402', 'reg_key': '00000000000000000000000000000000000000', 'asset_number': '15cd5b07', 'denomination': 0.01, 'machine_id': 1, 'location_id': 2, 'operator_id': 1}}
+Accessing connection -> serial_port: /dev/ttyUSB0
+Accessing connection -> timeout: 2
+Accessing events -> poll_address: 130
+Accessing machine -> denomination: 0.01
+Accessing machine -> asset_number: 15cd5b07
+Accessing machine -> reg_key: 00000000000000000000000000000000000000
+Accessing machine -> pos_id: B374A402
+Accessing security -> key: 44
+Accessing connection -> infinite: False
+Accessing machine -> machine_id: 1
+Accessing machine -> location_id: 2
+Accessing machine -> operator_id: 1
+[INFO/MainProcess] process shutting down
+[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+[DEBUG/MainProcess] running the remaining "atexit" finalizers

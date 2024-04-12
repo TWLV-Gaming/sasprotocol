@@ -95,6 +95,40 @@ class Sas:
         except Exception as e:
             self.log.error(e,exc_info=True)
 
+    # def start(self):
+    #     """Warm Up the connection to the VLT"""
+
+    #     self.log.info("Connecting to the machine...")
+    #     while True:
+    #         if not self.is_open():
+    #             try:
+    #                 self.open()
+    #                 if not self.is_open():
+    #                     self.log.error("Port is NOT open")
+    #             except SASOpenError:
+    #                 self.log.critical("No SAS Port")
+    #             except Exception as e:
+    #                 self.log.critical(e, exc_info=True)
+    #         else:
+    #             self.connection.reset_output_buffer()
+    #             self.connection.reset_input_buffer()
+    #             response = self.connection.read(1)
+
+    #             if not response:
+    #                 self.log.error("No SAS Connection")
+    #                 time.sleep(1)
+
+    #             if response != b"":
+    #                 self.address = int(binascii.hexlify(response), 16)
+    #                 self.machine_n = response.hex()
+    #                 self.log.info("Address Recognized " + str(self.address))
+    #                 break
+    #             else:
+    #                 self.log.error("No SAS Connection")
+    #                 time.sleep(1)
+    #     self.close()
+    #     return self.machine_n
+
     def start(self, max_retries=5, backoff_factor=2):
         """Fire up the connection to the EGM with retries and backoff.
     
@@ -137,6 +171,7 @@ class Sas:
                     self.address = int(binascii.hexlify(response), 16)
                     self.machine_n = response.hex()
                     self.log.info("Address Recognized: " + str(self.address))
+                    self.close()
                     return self.machine_n
                 else:
                     self.log.error("No SAS Connection, retrying...")
@@ -273,42 +308,33 @@ class Sas:
         else:
             return rsp[1:-2]
     
-    def events_poll(self, max_retries=3, backoff_factor=2):
-        """Events Poll Function with retry and backoff.
-    
-        Args:
-            max_retries (int): Maximum number of retries before giving up.
-            backoff_factor (int): Factor by which the wait time increases after each retry.
-    
-        Returns:
-            str: The current event status, which can be a new event, 'No Activity', or an error indicator.
+    def events_poll(self):
+        """Events Poll function
+
+        See Also
+        --------
+        WiKi : https://github.com/zacharytomlinson/saspy/wiki/4.-Important-To-Know#event-reporting
         """
         self._conf_event_port()
+
         cmd = [0x80 + self.address]
-        retry_count = 0
-    
-        while retry_count < max_retries:
-            try:
-                self.connection.write(cmd)
-                event = self.connection.read(1)
-                if event == "":
-                    raise NoSasConnection("No response from device, check connection.")
-                event = GPoll.GPoll.get_status(event.hex())
-                if self.last_gpoll_event != event:
-                    self.last_gpoll_event = event
-                else:
-                    event = 'No Activity'
-                return event
-            except NoSasConnection as e:
-                time.sleep(backoff_factor ** retry_count)  # Exponential backoff
-                print(f"Attempt {retry_count + 1} failed: {str(e)}")
-                retry_count += 1
-            except KeyError:
-                raise EMGGpollBadResponse("Bad response received.")
-            except Exception as e:
-                raise ErrorHandler(f"An unexpected error occurred: {e}", error_code=500)
-    
-        raise NoSasConnection("Maximum retries reached. Device may be off or unresponsive.", error_code=408)
+        self.connection.write([self.poll_address])
+
+        try:
+            self.connection.write(cmd)
+            event = self.connection.read(1)
+            if event == "":
+                raise NoSasConnection
+            event = GPoll.GPoll.get_status(event.hex())
+        except KeyError as e:
+            raise EMGGpollBadResponse
+        except Exception as e:
+            raise e
+        if self.last_gpoll_event != event:
+            self.last_gpoll_event = event
+        else:
+            event = 'No activity'
+        return event
    
 
     def shutdown(self):

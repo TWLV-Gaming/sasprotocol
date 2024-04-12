@@ -8,7 +8,7 @@ from igtsas import Sas
 from config_handler import configHandler
 
 # Setup logging
-logging.basicConfig(filename='meterpoll.log', level=logging.DEBUG,
+logging.basicConfig(filename='/home/hercules/TWLVGaming/sasprotocol/meterpoll.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def validate_data(data):

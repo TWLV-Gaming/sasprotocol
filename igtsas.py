@@ -323,9 +323,11 @@ class Sas:
         try:
             self.connection.write(cmd)
             event = self.connection.read(1)
+            print(event)
             if event == "":
                 raise NoSasConnection
             event = GPoll.GPoll.get_status(event.hex())
+            print(event)
         except KeyError as e:
             raise EMGGpollBadResponse
         except Exception as e:

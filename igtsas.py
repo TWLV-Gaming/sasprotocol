@@ -95,39 +95,7 @@ class Sas:
         except Exception as e:
             self.log.error(e,exc_info=True)
 
-    # def start(self):
-    #     """Warm Up the connection to the VLT"""
 
-    #     self.log.info("Connecting to the machine...")
-    #     while True:
-    #         if not self.is_open():
-    #             try:
-    #                 self.open()
-    #                 if not self.is_open():
-    #                     self.log.error("Port is NOT open")
-    #             except SASOpenError:
-    #                 self.log.critical("No SAS Port")
-    #             except Exception as e:
-    #                 self.log.critical(e, exc_info=True)
-    #         else:
-    #             self.connection.reset_output_buffer()
-    #             self.connection.reset_input_buffer()
-    #             response = self.connection.read(1)
-
-    #             if not response:
-    #                 self.log.error("No SAS Connection")
-    #                 time.sleep(1)
-
-    #             if response != b"":
-    #                 self.address = int(binascii.hexlify(response), 16)
-    #                 self.machine_n = response.hex()
-    #                 self.log.info("Address Recognized " + str(self.address))
-    #                 break
-    #             else:
-    #                 self.log.error("No SAS Connection")
-    #                 time.sleep(1)
-    #     self.close()
-    #     return self.machine_n
 
     def start(self, max_retries=5, backoff_factor=2):
         """Fire up the connection to the EGM with retries and backoff.
@@ -271,6 +239,7 @@ class Sas:
 
         try:
             response = self.connection.read(size)
+            print(response)
 
             #check if the response is empty
             if not response:
@@ -284,6 +253,8 @@ class Sas:
             else:
                 if int(binascii.hexlify(response)[2:4],16) != buf_header[1]:
                     raise BadCommandIsRunning('response %s run %s' % (binascii.hexlify(response), binascii.hexlify(bytearray(buf_header))))
+            print(response)
+
             response = Crc.validate(response)
 
             self.log.debug("sas response %s", binascii.hexlify(response))
@@ -293,6 +264,9 @@ class Sas:
         except Exception as e:
             self.log.critical(e,exc_info=True)
         return None
+    
+
+
     
     @deprecated("use utils.Crc validation fuction")
     def _check_response(rsp):
@@ -308,6 +282,8 @@ class Sas:
         else:
             return rsp[1:-2]
     
+    import logging
+
     def events_poll(self):
         """Events Poll function
 
@@ -315,29 +291,83 @@ class Sas:
         --------
         WiKi : https://github.com/zacharytomlinson/saspy/wiki/4.-Important-To-Know#event-reporting
         """
+        logging.debug("Configuring event port.")
         self._conf_event_port()
 
         cmd = [0x80 + self.address]
+        logging.debug(f"Sending poll address: {self.poll_address}")
         self.connection.write([self.poll_address])
 
         try:
+            logging.debug(f"Writing command: {cmd}")
             self.connection.write(cmd)
             event = self.connection.read(1)
             print(event)
             if event == "":
+                logging.error("No response received from SAS connection.")
                 raise NoSasConnection
+            logging.debug(f"Received event data: {event.hex()}")
             event = GPoll.GPoll.get_status(event.hex())
-            print(event)
+        except KeyError as e:
+            logging.error(f"KeyError encountered: {e}")
+            raise EMGGpollBadResponse from e
+        except Exception as e:
+            logging.error(f"An unexpected error occurred: {e}")
+            raise
+        if self.last_gpoll_event != event:
+            logging.info(f"Event updated from {self.last_gpoll_event} to {event}")
+            self.last_gpoll_event = event
+        else:
+            event = 'No activity'
+            logging.debug("No new event activity detected.")
+
+        return event
+    
+    def realtime_events_poll(self):
+        self._conf_event_port()
+
+        cmd = [0x80 | self.address]
+        self.connection.write([self.poll_address])
+
+        try:
+            self.connection.write(cmd)
+            init_buf = self.connection.read(3)
+            if len(init_buf) > 2 and init_buf[0] == self.address:
+                event_code = init_buf[2]
+                match event_code:
+                    case 126:
+                        return [event_code, self._parse_rte_msg(10, [2, 4, 1]), GPoll.GPoll.get_status("{:02x}".format(event_code))]
+                    case 127:
+                        return [event_code, self._parse_rte_msg(6, [4]), GPoll.GPoll.get_status("{:02x}".format(event_code))]
+            else:
+                init_buf = 0
+            if init_buf == "":
+                raise NoSasConnection
+
         except KeyError as e:
             raise EMGGpollBadResponse
         except Exception as e:
             raise e
-        if self.last_gpoll_event != event:
-            self.last_gpoll_event = event
-        else:
-            event = 'No activity'
-        return event
-   
+
+        return None
+
+    def _parse_rte_msg(self, buf_cnt, slice_cnt):
+        slices = []
+        rem = self.connection.read(buf_cnt - 2)
+        for sliver in slice_cnt:
+            slices.append(bin.BCD(rem[0:sliver]).decoded)
+            rem = rem[sliver:]
+        return slices
+
+    def reset_connection(self):
+        self.connection.send_break(0.50)
+        self.flush()
+        self.connection.reset_input_buffer()
+        self.connection.reset_output_buffer()
+
+        return True
+
+    
 
     def shutdown(self):
         """Make the EGM Unplayable"""
@@ -554,11 +584,15 @@ class Sas:
 
         cmd = [0x0E]
         cmd.extend(bytearray(enable))
-
         if self._send_command(cmd, True, crc_need=True) == self.address:
+            if not enable:
+                self._synchronize()
             return True
 
         return False
+
+
+
     
     def send_meters_10_15(self, denom=True):
         """Send meters 10 through 15

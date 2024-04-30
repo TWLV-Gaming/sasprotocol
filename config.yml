@@ -18,7 +18,7 @@ connection:
 
 
 events:
-    poll_timeout: 0.5
+    poll_timeout: .5
     # This sets a timeout for polling events to 0.5 seconds. Polling is a method used to check the status of a device or source of data at regular intervals.
     poll_address: 0x82 #Standard Poll Address - On most moachines | Try 0x80 if 82 don't work
     # Specifies the address to poll, in hexadecimal notation. 
@@ -43,7 +43,7 @@ machine:
     #  Tagged as an "Asset Magic Number," a unique identifier or key used by the software to recognize or authenticate a device or machine.
     denomination: 0.01
     # Specifies a denomination value, possibly relating to financial transactions or units of measurement managed by the machine or software.
-    machine_id: 1
-    location_id: 1
+    machine_id: 10
+    location_id: 10
     operator_id: 1
     

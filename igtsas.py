@@ -179,6 +179,55 @@ class Sas:
         self.connection.stopbits = serial.STOPBITS_ONE
         self.connection.reset_input_buffer()
 
+    # def _send_command(
+    #         self, command, no_response=False, timeout=None, crc_need=True, size=1
+    # ):
+    #     """Main function to physically send commands to the VLT"""
+    #     try:
+    #         buf_header = [self.address]
+    #         self._conf_port()
+
+    #         buf_header.extend(command)
+
+    #         if crc_need:
+    #             buf_header.extend(Crc.calculate(bytes(buf_header)))
+
+    #         self.connection.write([self.poll_address, self.address])
+
+    #         self.connection.flush()
+    #         self.connection.parity = serial.PARITY_SPACE
+
+    #         print(buf_header[1:])
+    #         self.connection.write((buf_header[1:]))
+
+    #     except Exception as e:
+    #         self.log.error(e, exc_info=True)
+
+    #     try:
+    #         response = self.connection.read(size)
+    #         print(response)
+
+    #         if no_response:
+    #             try:
+    #                 return int(binascii.hexlify(response))
+    #             except ValueError as e:
+    #                 self.log.critical("no sas response %s" % (str(buf_header[1:])))
+    #                 return None
+
+    #         response = self._check_response(response)
+
+    #         self.log.debug("sas response %s", binascii.hexlify(response))
+
+    #         return response
+
+    #     except BadCRC as e:
+    #         raise e
+
+    #     except Exception as e:
+    #         self.log.critical(e, exc_info=True)
+
+    #     return None
+
     def _send_command(
             self,command, no_response=False, timeout=None, crc_need=True, size=1
     ):
@@ -219,6 +268,20 @@ class Sas:
                 crc = Crc.calculate(bytes(buf_header))
                 buf_header.extend(crc)
                 self.log.info(f"Extended buffer header with CRC: {crc} resulting in {buf_header}")
+            
+            # self.log.info(f"Writing to connection: poll address {self.poll_address}, Device address {self.address}")
+            # self.connection.write(bytes([self.poll_address, self.address]))  # Ensure it's in bytes
+            # self.connection.flush()
+            # self.log.info("Flushed the connection")
+
+            # self.connection.parity = serial.PARITY_SPACE
+            # self.log.info(f"Set connection parity to SPACE. Sleeping for 0.5 seconds.")
+            # time.sleep(0.5)  # Increased from 0.0 seconds
+
+            # self.log.info(f"Writing header to connection: {buf_header[1:]} - raw bytes: {bytes(buf_header[1:])}")
+            # self.connection.write(bytes(buf_header[1:]))
+            # response = self.connection.read(size)
+            # self.log.info(f"Raw response received: {response}")
 
             self.log.info(f"Writing to connection: poll address {self.poll_address}, Device address {self.address}")
             self.connection.write([self.poll_address, self.address])
@@ -328,44 +391,60 @@ class Sas:
 
         cmd = [0x80 | self.address]
         self.connection.write([self.poll_address])
+        self.connection.write(cmd)
 
         try:
-            self.connection.write(cmd)
             init_buf = self.connection.read(3)
-            if len(init_buf) > 2 and init_buf[0] == self.address:
+            if len(init_buf) == 3 and init_buf[0] == self.address:
                 event_code = init_buf[2]
                 match event_code:
                     case 126:
-                        return [event_code, self._parse_rte_msg(10, [2, 4, 1]), GPoll.GPoll.get_status("{:02x}".format(event_code))]
+                        data = self._parse_rte_msg(10, [2, 4, 1])
+                        status = GPoll.GPoll.get_status(f"{event_code:02x}")
+                        return [event_code, data, status]
                     case 127:
-                        return [event_code, self._parse_rte_msg(6, [4]), GPoll.GPoll.get_status("{:02x}".format(event_code))]
+                        data = self._parse_rte_msg(6, [4])
+                        status = GPoll.GPoll.get_status(f"{event_code:02x}")
+                        return [event_code, data, status]
             else:
-                init_buf = 0
-            if init_buf == "":
-                raise NoSasConnection
-
+                raise NoSasConnection("Invalid or incomplete buffer received.")
         except KeyError as e:
-            raise EMGGpollBadResponse
+            raise EMGGpollBadResponse("Key error processing response.") from e
         except Exception as e:
-            raise e
+            raise Exception("Error processing real-time events.") from e
 
         return None
 
+
     def _parse_rte_msg(self, buf_cnt, slice_cnt):
         slices = []
-        rem = self.connection.read(buf_cnt - 2)
-        for sliver in slice_cnt:
-            slices.append(bin.BCD(rem[0:sliver]).decoded)
-            rem = rem[sliver:]
+        remaining_bytes = self.connection.read(buf_cnt - 2)
+        index = 0
+
+        for length in slice_cnt:
+            if index + length > len(remaining_bytes):
+                raise ValueError("Buffer underrun while parsing message.")
+            slice_data = remaining_bytes[index:index + length]
+            try:
+                decoded_value = bin.BCD(slice_data).decoded
+            except ValueError as e:
+                raise ValueError(f"Failed to decode BCD for slice starting at {index}.") from e
+            slices.append(decoded_value)
+            index += length
+
         return slices
 
-    def reset_connection(self):
-        self.connection.send_break(0.50)
-        self.flush()
-        self.connection.reset_input_buffer()
-        self.connection.reset_output_buffer()
 
-        return True
+    def reset_connection(self):
+        try:
+            self.connection.send_break(0.50)
+            self.flush()
+            self.connection.reset_input_buffer()
+            self.connection.reset_output_buffer()
+        except Exception as e:
+            return False, str(e)
+
+        return True, "Connection reset successfully."
 
     
 
@@ -567,29 +646,27 @@ class Sas:
         return False
     
     def en_dis_rt_event_reporting(self, enable=False):
-        """For situations where real time event reporting is desired, the gaming machine can be configured to report events in response to long polls as well as general polls. This allows events such as reel stops, coins in, game end, etc., to be reported in a timely manner
-            Returns
-            -------
-            bool
-                True if successful, False otherwise.
-
-            See Also
-            --------
-            WiKi : https://github.com/zacharytomlinson/saspy/wiki/4.-Important-To-Know#event-reporting
-        """
         if not enable:
             enable = [0]
         else:
             enable = [1]
 
-        cmd = [0x0E]
-        cmd.extend(bytearray(enable))
+        cmd = [0x0E]  # Initialize command list with the command identifier
+        cmd.extend(bytearray(enable))  # Append the 'enable' status to the command list
+
+        # Print out the command that will be sent
+        print("Command being sent:", cmd)
+        print("CRC needed:", True)
+        print("Expected address:", self.address)
+
+        # Send the command and check if the response matches the expected device address
         if self._send_command(cmd, True, crc_need=True) == self.address:
             if not enable:
-                self._synchronize()
+                self.reset_connection()
             return True
 
         return False
+
 
 
 

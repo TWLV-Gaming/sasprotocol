@@ -2,7 +2,7 @@ from igtsas import Sas
 from config_handler import *
 import time, sys, os, atexit
 
-# Let's init the configuration file
+# Initialize the configuration file
 config_handler = configHandler()
 config_handler.read_config_file()
 
@@ -11,10 +11,10 @@ def cleanup():
     sas.close()
 
 def test_startup_shutdown():
-    print(sas.shutdown())
-    time.sleep(5)
-    print(sas.startup())
-    time.sleep(5)
+    print("Shutting down:", sas.shutdown())
+    time.sleep(5)  # Ensure the device has enough time to process the shutdown
+    print("Starting up:", sas.startup())
+    time.sleep(5)  # Ensure the device has enough time to process the startup
 
 sas = Sas(
     port=config_handler.get_config_value("connection", "serial_port"),
@@ -30,38 +30,34 @@ sas = Sas(
 
 atexit.register(cleanup)
 
-print(sas.start())
-print(sas.en_dis_rt_event_reporting(enable=False))
-#print(sas.en_dis_rt_event_reporting(enable=False))
+
 try:
-    #print(sas.gaming_machine_id())
-    #print(sas.sas_version_gaming_machine_serial_id())
-    print(sas.current_credits())
-    #test_startup_shutdown()
-    
-    print(sas.en_dis_rt_event_reporting(enable=True))
+    print("Starting SAS connection:", sas.start())
+    print("Disabling real-time event reporting:", sas.en_dis_rt_event_reporting(enable=False))
+    time.sleep(1)  # Ensure command processing time
+
+    print("Enabling real-time event reporting:", sas.en_dis_rt_event_reporting(enable=True))
+    time.sleep(1)  # Ensure command processing time
 
     event = sas.realtime_events_poll()
-    print(event)
+    print("Event polled:", event)
     if event is not None:
-        print("|------------------------------------------------------------------------------------------------------------------|")
+        print("|------------------------------------------------------------------------------------------------|")
         if event[0] == 126:
-            (print("|_event: %s_|_" % hex(event[0]),
-             "credits wagered: %s_|_" % event[1][0],
-             "total coin in: %s_|_" % event[1][1],
-             "wager type: %s_|_" % event[1][2],
-             "event desc: %s__|" % event[2]))
+            print("|_event: {0}_|_credits wagered: {1}_|_total coin in: {2}_|_wager type: {3}_|_event desc: {4}__|".format(
+                hex(event[0]), event[1][0], event[1][1], event[1][2], event[2]))
         else:
-            (print("|________event: %s_______|________" % hex(event[0]),
-             "_______game win: %s_______|_______" % event[1][0],
-             "_______event desc: %s_______|" % event[2]))
-        print("|__________________________________________________________________________________________________________________|")
+            print("|________event: {0}_______|________game win: {1}_______|________event desc: {2}_______|".format(
+                hex(event[0]), event[1][0], event[2]))
+        print("|________________________________________________________________________________________________|")
 
-    time.sleep(0.1)
+    time.sleep(0.1)  # Post-event processing delay
 except Exception as e:
     exc_type, exc_obj, exc_tb = sys.exc_info()
     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    print(exc_type, fname, exc_tb.tb_lineno)
+    print("Exception caught in script:", exc_type, fname, exc_tb.tb_lineno)
+    print(str(e))  # Adding the exception message
+
 
 # import sys
 # import select

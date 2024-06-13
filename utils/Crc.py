@@ -17,20 +17,37 @@ for i in range(0, 256):
         val = c_ushort(val >> 1).value ^ MAGIC_SEED if val & 0x0001 else c_ushort(val >> 1).value
     table.append(hex(val))
 
-
 def calculate(payload=None, init=0, sigbit=Endianness.LITTLE_ENDIAN):
     _crc = init
+    print("Initial CRC:", _crc)  # Debugging
 
-    for c in payload:
+    for index, c in enumerate(payload):
         q = _crc ^ c
         _crc = c_ushort(_crc >> 8).value ^ int(table[(q & 0x00ff)], 0)
+        print(f"Byte {index}: {hex(c)}, Intermediate CRC: {hex(_crc)}")  # Debugging
 
     if sigbit == Endianness.BIG_ENDIAN:
         _crc = (_crc & 0x00ff) << 8 | (_crc & 0xff00) >> 8
     else:
         _crc = (_crc & 0xff00) >> 8 | (_crc & 0x00ff) << 8
 
+    print("Final CRC:", [((_crc >> 8) & 0xFF), (_crc & 0xFF)])  # Debugging
     return [((_crc >> 8) & 0xFF), (_crc & 0xFF)]
+
+
+# def calculate(payload=None, init=0, sigbit=Endianness.LITTLE_ENDIAN):
+#     _crc = init
+
+#     for c in payload:
+#         q = _crc ^ c
+#         _crc = c_ushort(_crc >> 8).value ^ int(table[(q & 0x00ff)], 0)
+
+#     if sigbit == Endianness.BIG_ENDIAN:
+#         _crc = (_crc & 0x00ff) << 8 | (_crc & 0xff00) >> 8
+#     else:
+#         _crc = (_crc & 0xff00) >> 8 | (_crc & 0x00ff) << 8
+
+#     return [((_crc >> 8) & 0xFF), (_crc & 0xFF)]
 
 def validate(check=None, init=0, sigbit=Endianness.LITTLE_ENDIAN):
     """Function in charge of the CRC Check"""
